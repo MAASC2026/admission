@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Applicant View | MAASC Admission</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#1f2937;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    color:white;
+    padding:18px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    width:52px;
+    height:52px;
+    border-radius:12px;
+    background:white;
+    color:#1e3a8a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.header-title h1{
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.header-title p{
+    font-size:13px;
+    opacity:.8;
+}
+
+.back-btn{
+    border:none;
+    background:white;
+    color:#1e3a8a;
+    padding:11px 18px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.back-btn:hover{
+    background:#e5e7eb;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    max-width:1250px;
+    margin:25px auto;
+    padding:0 18px;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:80px 20px;
+    background:white;
+    border-radius:14px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.spinner{
+    width:42px;
+    height:42px;
+    border:4px solid #e5e7eb;
+    border-top-color:#2563eb;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ================= ERROR ================= */
+
+.error-box{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:18px;
+    border-radius:10px;
+    display:none;
+    margin-bottom:20px;
+}
+
+/* ================= APPLICATION HEADER ================= */
+
+.application-header{
+    background:white;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.application-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.application-number{
+    font-size:24px;
+    font-weight:bold;
+    color:#1e3a8a;
+}
+
+.application-type{
+    display:inline-block;
+    margin-top:7px;
+    padding:5px 12px;
+    border-radius:20px;
+    background:#dbeafe;
+    color:#1e40af;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.status{
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    background:#fef3c7;
+    color:#92400e;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.card-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#111827;
+    padding-bottom:14px;
+    margin-bottom:18px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+/* ================= DETAILS ================= */
+
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.detail{
+    background:#f8fafc;
+    padding:13px;
+    border-radius:9px;
+}
+
+.detail-label{
+    font-size:11px;
+    text-transform:uppercase;
+    color:#64748b;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+.detail-value{
+    font-size:14px;
+    color:#111827;
+    word-break:break-word;
+}
+
+/* ================= DOCUMENTS ================= */
+
+.documents{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.document-box{
+    padding:15px;
+    background:#f8fafc;
+    border-radius:9px;
+    border:1px solid #e5e7eb;
+}
+
+.document-title{
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.document-path{
+    font-size:11px;
+    color:#64748b;
+    word-break:break-all;
+}
+
+/* ================= FEE TABLE ================= */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+.fee-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+.fee-table th{
+    background:#f1f5f9;
+    padding:13px;
+    text-align:left;
+    font-size:13px;
+    color:#334155;
+    border-bottom:2px solid #e2e8f0;
+}
+
+.fee-table td{
+    padding:12px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:middle;
+}
+
+.fee-name{
+    font-weight:bold;
+}
+
+.amount-input,
+.upi-input,
+.status-select{
+    width:100%;
+    padding:10px;
+    border:1px solid #cbd5e1;
+    border-radius:7px;
+    outline:none;
+    background:white;
+}
+
+.amount-input:focus,
+.upi-input:focus,
+.status-select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 2px rgba(37,99,235,.1);
+}
+
+.amount-input{
+    max-width:150px;
+}
+
+.status-select{
+    min-width:120px;
+}
+
+/* ================= TOTALS ================= */
+
+.total-section{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.total-box{
+    padding:18px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+}
+
+.total-label{
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.total-value{
+    font-size:22px;
+    font-weight:bold;
+    color:#111827;
+}
+
+/* ================= SAVE ================= */
+
+.save-area{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.save-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:13px 24px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.save-btn:hover{
+    background:#1d4ed8;
+}
+
+.save-btn:disabled{
+    background:#94a3b8;
+    cursor:not-allowed;
+}
+
+.message{
+    padding:11px 15px;
+    border-radius:7px;
+    font-size:13px;
+    display:none;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.failure{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .details-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .documents{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .total-section{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .header{
+        padding:15px;
+        align-items:flex-start;
+    }
+
+    .header-title h1{
+        font-size:17px;
+    }
+
+    .header-title p{
+        font-size:11px;
+    }
+
+    .container{
+        padding:0 10px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .documents{
+        grid-template-columns:1fr;
+    }
+
+    .application-number{
+        font-size:19px;
+    }
+
+    .card{
+        padding:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div class="logo">
+            MAASC
+        </div>
+
+        <div class="header-title">
+            <h1>Applicant View</h1>
+            <p>MAASC Admission Portal 2026–2027</p>
+        </div>
+
+    </div>
+
+    <button class="back-btn" onclick="goBack()">
+        ← Back to Applicants
+    </button>
+
+</header>
+
+
+<div class="container">
+
+    <!-- LOADING -->
+
+    <div id="loading" class="loading">
+
+        <div class="spinner"></div>
+
+        <h3>Loading applicant...</h3>
+
+        <p style="margin-top:7px;color:#64748b;">
+            Please wait
+        </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorBox" class="error-box"></div>
+
+
+    <!-- MAIN CONTENT -->
+
+    <div id="mainContent" style="display:none;">
+
+        <!-- APPLICATION HEADER -->
+
+        <div class="application-header">
+
+            <div class="application-top">
+
+                <div>
+
+                    <div class="application-number"
+                         id="applicationNumber">
+                        -
+                    </div>
+
+                    <div class="application-type"
+                         id="applicationType">
+                        -
+                    </div>
+
+                </div>
+
+                <div class="status"
+                     id="applicationStatus">
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= APPLICANT DETAILS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Applicant Details
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Applicant Name
+                    </div>
+                    <div class="detail-value"
+                         id="applicantName">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Date of Birth
+                    </div>
+                    <div class="detail-value"
+                         id="dob">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Gender
+                    </div>
+                    <div class="detail-value"
+                         id="gender">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Mobile
+                    </div>
+                    <div class="detail-value"
+                         id="mobile">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Email
+                    </div>
+                    <div class="detail-value"
+                         id="email">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Admission Type
+                    </div>
+                    <div class="detail-value"
+                         id="admissionType">
+                        -
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= COURSE DETAILS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Course / Admission Details
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Course
+                    </div>
+                    <div class="detail-value"
+                         id="course">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Department
+                    </div>
+                    <div class="detail-value"
+                         id="department">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Academic Year
+                    </div>
+                    <div class="detail-value"
+                         id="academicYear">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Year
+                    </div>
+                    <div class="detail-value"
+                         id="year">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Section
+                    </div>
+                    <div class="detail-value"
+                         id="section">
+                        Not Assigned
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Admission Status
+                    </div>
+                    <div class="detail-value"
+                         id="admissionStatus">
+                        -
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PARENT DETAILS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Parent / Guardian Details
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Parent Name
+                    </div>
+                    <div class="detail-value"
+                         id="parentName">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Parent Mobile
+                    </div>
+                    <div class="detail-value"
+                         id="parentMobile">
+                        -
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= ADDRESS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Address
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Address
+                    </div>
+                    <div class="detail-value"
+                         id="address">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        City
+                    </div>
+                    <div class="detail-value"
+                         id="city">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        District
+                    </div>
+                    <div class="detail-value"
+                         id="district">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        State
+                    </div>
+                    <div class="detail-value"
+                         id="state">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Pincode
+                    </div>
+                    <div class="detail-value"
+                         id="pincode">
+                        -
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUALIFICATION ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Qualification Details
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Previous Course
+                    </div>
+                    <div class="detail-value"
+                         id="previousCourse">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Previous Institution
+                    </div>
+                    <div class="detail-value"
+                         id="previousInstitution">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Passing Year
+                    </div>
+                    <div class="detail-value"
+                         id="passingYear">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Marks
+                    </div>
+                    <div class="detail-value"
+                         id="marks">
+                        -
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">
+                        Percentage
+                    </div>
+                    <div class="detail-value"
+                         id="percentage">
+                        -
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= DOCUMENTS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Uploaded Documents
+            </div>
+
+            <div class="documents">
+
+                <div class="document-box">
+
+                    <div class="document-title">
+                        Applicant Photo
+                    </div>
+
+                    <div class="document-path"
+                         id="photoPath">
+                        Not uploaded
+                    </div>
+
+                </div>
+
+
+                <div class="document-box">
+
+                    <div class="document-title">
+                        Marksheet
+                    </div>
+
+                    <div class="document-path"
+                         id="marksheetPath">
+                        Not uploaded
+                    </div>
+
+                </div>
+
+
+                <div class="document-box">
+
+                    <div class="document-title">
+                        Transfer Certificate
+                    </div>
+
+                    <div class="document-path"
+                         id="tcPath">
+                        Not uploaded
+                    </div>
+
+                </div>
+
+
+                <div class="document-box">
+
+                    <div class="document-title">
+                        Other Document
+                    </div>
+
+                    <div class="document-path"
+                         id="otherPath">
+                        Not uploaded
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FEE DETAILS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Fee Payment Details
+            </div>
+
+            <div class="table-wrapper">
+
+                <table class="fee-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th style="width:22%;">
+                                Fee Type
+                            </th>
+
+                            <th style="width:18%;">
+                                Amount (₹)
+                            </th>
+
+                            <th style="width:35%;">
+                                UPI Transaction ID
+                            </th>
+
+                            <th style="width:25%;">
+                                Payment Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <!-- APPLICATION FEE -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Application Fee
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="applicationFeeAmount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="applicationFeeUpi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="applicationFeeStatus">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 1 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 1 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester1Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester1Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester1Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 2 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 2 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester2Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester2Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester2Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 3 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 3 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester3Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester3Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester3Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 4 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 4 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester4Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester4Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester4Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 5 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 5 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester5Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester5Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester5Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <!-- SEMESTER 6 -->
+
+                        <tr>
+
+                            <td class="fee-name">
+                                Semester 6 Fees
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    class="amount-input fee-amount"
+                                    id="semester6Amount"
+                                    placeholder="0">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="upi-input"
+                                    id="semester6Upi"
+                                    placeholder="Enter UPI Transaction ID">
+                            </td>
+
+                            <td>
+                                <select
+                                    class="status-select fee-status"
+                                    id="semester6Status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- TOTALS -->
+
+            <div class="total-section">
+
+                <div class="total-box">
+
+                    <div class="total-label">
+                        Total Fee
+                    </div>
+
+                    <div class="total-value"
+                         id="totalFee">
+                        ₹0.00
+                    </div>
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <div class="total-label">
+                        Total Paid
+                    </div>
+
+                    <div class="total-value"
+                         id="totalPaid">
+                        ₹0.00
+                    </div>
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <div class="total-label">
+                        Balance
+                    </div>
+
+                    <div class="total-value"
+                         id="balance">
+                        ₹0.00
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVE -->
+
+            <div class="save-area">
+
+                <div id="successMessage"
+                     class="message success">
+                    Fee details saved successfully.
+                </div>
+
+                <div id="errorMessage"
+                     class="message failure">
+                    Unable to save fee details.
+                </div>
+
+                <button
+                    id="saveBtn"
+                    class="save-btn">
+
+                    Save Fee Details
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    updateDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyCw5aKRzLKDS9ETD466KGPeuZ7_qOW7oUU",
+
+    authDomain:
+        "maasc-admission.firebaseapp.com",
+
+    projectId:
+        "maasc-admission",
+
+    storageBucket:
+        "maasc-admission.firebasestorage.app",
+
+    messagingSenderId:
+        "391924119351",
+
+    appId:
+        "1:391924119351:web:0e55cbe892ef8f589dccb2"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* =========================================================
+   APPLICATION ID
+========================================================= */
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const applicationId =
+    params.get("id");
+
+
+/* =========================================================
+   ELEMENT HELPERS
+========================================================= */
+
+function setText(id, value){
+
+    const element =
+        document.getElementById(id);
+
+    if(!element) return;
+
+    if(
+        value === undefined ||
+        value === null ||
+        value === ""
+    ){
+
+        element.textContent = "-";
+
+    }else{
+
+        element.textContent = value;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD APPLICANT
+========================================================= */
+
+async function loadApplicant(){
+
+    try{
+
+        if(!applicationId){
+
+            throw new Error(
+                "Application ID is missing from the URL."
+            );
+
+        }
+
+
+        const applicationRef =
+            doc(
+                db,
+                "admissions",
+                applicationId
+            );
+
+
+        const snapshot =
+            await getDoc(applicationRef);
+
+
+        if(!snapshot.exists()){
+
+            throw new Error(
+                "Applicant record was not found."
+            );
+
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        /* ================= APPLICATION ================= */
+
+        setText(
+            "applicationNumber",
+            data.applicationNo || applicationId
+        );
+
+        setText(
+            "applicationType",
+            data.admissionType || "-"
+        );
+
+        setText(
+            "applicationStatus",
+            data.applicationStatus ||
+            data.status ||
+            "Pending"
+        );
+
+
+        /* ================= APPLICANT ================= */
+
+        setText(
+            "applicantName",
+            data.applicantName
+        );
+
+        setText(
+            "dob",
+            data.dob
+        );
+
+        setText(
+            "gender",
+            data.gender
+        );
+
+        setText(
+            "mobile",
+            data.mobile
+        );
+
+        setText(
+            "email",
+            data.email
+        );
+
+        setText(
+            "admissionType",
+            data.admissionType
+        );
+
+
+        /* ================= COURSE ================= */
+
+        setText(
+            "course",
+            data.course
+        );
+
+        setText(
+            "department",
+            data.department
+        );
+
+        setText(
+            "academicYear",
+            data.academicYear
+        );
+
+        setText(
+            "year",
+            data.year || "I Year"
+        );
+
+        setText(
+            "section",
+            data.section || "Not Assigned"
+        );
+
+        setText(
+            "admissionStatus",
+            data.admissionStatus
+        );
+
+
+        /* ================= PARENT ================= */
+
+        setText(
+            "parentName",
+            data.parentName
+        );
+
+        setText(
+            "parentMobile",
+            data.parentMobile
+        );
+
+
+        /* ================= ADDRESS ================= */
+
+        setText(
+            "address",
+            data.address
+        );
+
+        setText(
+            "city",
+            data.city
+        );
+
+        setText(
+            "district",
+            data.district
+        );
+
+        setText(
+            "state",
+            data.state
+        );
+
+        setText(
+            "pincode",
+            data.pincode
+        );
+
+
+        /* ================= QUALIFICATION ================= */
+
+        setText(
+            "previousCourse",
+            data.previousCourse
+        );
+
+        setText(
+            "previousInstitution",
+            data.previousInstitution
+        );
+
+        setText(
+            "passingYear",
+            data.passingYear
+        );
+
+        setText(
+            "marks",
+            data.marks
+        );
+
+        setText(
+            "percentage",
+            data.percentage
+        );
+
+
+        /* ================= DOCUMENTS ================= */
+
+        setText(
+            "photoPath",
+            data.photoStoragePath ||
+            "Not uploaded"
+        );
+
+        setText(
+            "marksheetPath",
+            data.marksheetStoragePath ||
+            "Not uploaded"
+        );
+
+        setText(
+            "tcPath",
+            data.transferCertificateStoragePath ||
+            "Not uploaded"
+        );
+
+        setText(
+            "otherPath",
+            data.otherDocumentStoragePath ||
+            "Not uploaded"
+        );
+
+
+        /* ================= FEE DATA ================= */
+
+        loadFeeData(data);
+
+
+        /* ================= SHOW PAGE ================= */
+
+        document.getElementById("loading")
+            .style.display = "none";
+
+        document.getElementById("mainContent")
+            .style.display = "block";
+
+
+    }catch(error){
+
+        console.error(
+            "APPLICANT LOAD ERROR:",
+            error
+        );
+
+
+        document.getElementById("loading")
+            .style.display = "none";
+
+
+        const errorBox =
+            document.getElementById("errorBox");
+
+
+        errorBox.textContent =
+            error.message ||
+            "Unable to load applicant.";
+
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD FEE DATA
+========================================================= */
+
+function loadFeeData(data){
+
+    const applicationFee =
+        data.applicationFee || {};
+
+
+    document.getElementById(
+        "applicationFeeAmount"
+    ).value =
+        applicationFee.amount || "";
+
+
+    document.getElementById(
+        "applicationFeeUpi"
+    ).value =
+        applicationFee.upiTransactionId || "";
+
+
+    document.getElementById(
+        "applicationFeeStatus"
+    ).value =
+        applicationFee.status || "Pending";
+
+
+    const semesterFees =
+        data.semesterFees || {};
+
+
+    for(let i = 1; i <= 6; i++){
+
+        const semester =
+            semesterFees[
+                "semester" + i
+            ] || {};
+
+
+        document.getElementById(
+            `semester${i}Amount`
+        ).value =
+            semester.amount || "";
+
+
+        document.getElementById(
+            `semester${i}Upi`
+        ).value =
+            semester.upiTransactionId || "";
+
+
+        document.getElementById(
+            `semester${i}Status`
+        ).value =
+            semester.status || "Pending";
+
+    }
+
+
+    calculateTotals();
+
+}
+
+
+/* =========================================================
+   CALCULATE TOTALS
+========================================================= */
+
+function calculateTotals(){
+
+    let totalFee = 0;
+
+    let totalPaid = 0;
+
+
+    /* APPLICATION FEE */
+
+    const applicationAmount =
+        Number(
+            document.getElementById(
+                "applicationFeeAmount"
+            ).value
+        ) || 0;
+
+
+    const applicationStatus =
+        document.getElementById(
+            "applicationFeeStatus"
+        ).value;
+
+
+    totalFee += applicationAmount;
+
+
+    if(applicationStatus === "Paid"){
+
+        totalPaid += applicationAmount;
+
+    }
+
+
+    /* SEMESTERS */
+
+    for(let i = 1; i <= 6; i++){
+
+        const amount =
+            Number(
+                document.getElementById(
+                    `semester${i}Amount`
+                ).value
+            ) || 0;
+
+
+        const status =
+            document.getElementById(
+                `semester${i}Status`
+            ).value;
+
+
+        totalFee += amount;
+
+
+        if(status === "Paid"){
+
+            totalPaid += amount;
+
+        }
+
+    }
+
+
+    const balance =
+        totalFee - totalPaid;
+
+
+    document.getElementById(
+        "totalFee"
+    ).textContent =
+        formatCurrency(totalFee);
+
+
+    document.getElementById(
+        "totalPaid"
+    ).textContent =
+        formatCurrency(totalPaid);
+
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+        formatCurrency(balance);
+
+}
+
+
+/* =========================================================
+   CURRENCY
+========================================================= */
+
+function formatCurrency(amount){
+
+    return "₹" +
+        Number(amount || 0)
+            .toLocaleString(
+                "en-IN",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+
+}
+
+
+/* =========================================================
+   SAVE FEE DETAILS
+========================================================= */
+
+async function saveFeeDetails(){
+
+    const saveBtn =
+        document.getElementById("saveBtn");
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    const errorMessage =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    successMessage.style.display =
+        "none";
+
+    errorMessage.style.display =
+        "none";
+
+
+    try{
+
+        saveBtn.disabled = true;
+
+        saveBtn.textContent =
+            "Saving...";
+
+
+        /* ================= APPLICATION FEE ================= */
+
+        const applicationFee = {
+
+            amount:
+                Number(
+                    document.getElementById(
+                        "applicationFeeAmount"
+                    ).value
+                ) || 0,
+
+            upiTransactionId:
+                document.getElementById(
+                    "applicationFeeUpi"
+                ).value.trim(),
+
+            status:
+                document.getElementById(
+                    "applicationFeeStatus"
+                ).value
+
+        };
+
+
+        /* ================= SEMESTER FEES ================= */
+
+        const semesterFees = {};
+
+
+        for(let i = 1; i <= 6; i++){
+
+            semesterFees[
+                "semester" + i
+            ] = {
+
+                amount:
+                    Number(
+                        document.getElementById(
+                            `semester${i}Amount`
+                        ).value
+                    ) || 0,
+
+                upiTransactionId:
+                    document.getElementById(
+                        `semester${i}Upi`
+                    ).value.trim(),
+
+                status:
+                    document.getElementById(
+                        `semester${i}Status`
+                    ).value
+
+            };
+
+        }
+
+
+        /* ================= SAVE ================= */
+
+        const applicationRef =
+            doc(
+                db,
+                "admissions",
+                applicationId
+            );
+
+
+        await updateDoc(
+            applicationRef,
+            {
+
+                applicationFee:
+                    applicationFee,
+
+                semesterFees:
+                    semesterFees,
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        calculateTotals();
+
+
+        successMessage.textContent =
+            "Fee details saved successfully.";
+
+
+        successMessage.style.display =
+            "block";
+
+
+    }catch(error){
+
+        console.error(
+            "SAVE FEE ERROR:",
+            error
+        );
+
+
+        errorMessage.textContent =
+            "Unable to save fee details: " +
+            error.message;
+
+
+        errorMessage.style.display =
+            "block";
+
+
+    }finally{
+
+        saveBtn.disabled = false;
+
+        saveBtn.textContent =
+            "Save Fee Details";
+
+    }
+
+}
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+document.querySelectorAll(
+    ".fee-amount, .fee-status"
+).forEach(element => {
+
+    element.addEventListener(
+        "input",
+        calculateTotals
+    );
+
+    element.addEventListener(
+        "change",
+        calculateTotals
+    );
+
+});
+
+
+document.getElementById(
+    "saveBtn"
+).addEventListener(
+    "click",
+    saveFeeDetails
+);
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+window.goBack = function(){
+
+    window.location.href =
+        "applicant-list.html";
+
+};
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadApplicant();
+
+</script>
+
+</body>
+</html>

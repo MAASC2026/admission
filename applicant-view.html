@@ -1,104 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Applicant View | MAASC Admission</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f4f6f9;
+    background:#f3f6fb;
     color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
-    background:linear-gradient(135deg,#111827,#1e3a8a);
+    background:linear-gradient(135deg,#123c69,#1d5d91);
     color:white;
-    padding:18px 28px;
+    padding:18px 30px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:20px;
+    justify-content:space-between;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
-.header-left{
+.logo-area{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:14px;
 }
 
 .logo{
     width:52px;
     height:52px;
-    border-radius:12px;
+
+    border-radius:50%;
+
     background:white;
-    color:#1e3a8a;
+    color:#123c69;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
+
+    font-weight:bold;
+    font-size:14px;
+}
+
+.college-name{
+    font-size:20px;
     font-weight:bold;
 }
 
-.header-title h1{
-    font-size:21px;
-    margin-bottom:4px;
-}
-
-.header-title p{
-    font-size:13px;
-    opacity:.8;
+.college-subtitle{
+    font-size:12px;
+    opacity:.85;
+    margin-top:4px;
 }
 
 .back-btn{
-    border:none;
-    background:white;
-    color:#1e3a8a;
-    padding:11px 18px;
+    color:white;
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border:1px solid rgba(255,255,255,.5);
     border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
 }
 
 .back-btn:hover{
-    background:#e5e7eb;
+    background:rgba(255,255,255,.1);
 }
 
-/* ================= CONTAINER ================= */
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container{
-    max-width:1250px;
-    margin:25px auto;
-    padding:0 18px;
+    max-width:1400px;
+    margin:30px auto;
+    padding:0 20px;
 }
 
-/* ================= LOADING ================= */
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.page-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    color:#123c69;
+    font-size:30px;
+    margin-bottom:7px;
+}
+
+.page-title p{
+    color:#6b7280;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.status-label{
+    font-size:12px;
+    color:#6b7280;
+}
+
+.status-badge{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+    font-weight:bold;
+}
+
+.status-pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.status-verified{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.status-selected{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status-confirmed{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.status-rejected{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.status-default{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+    display:none;
+
+    background:#fee2e2;
+    color:#991b1b;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-bottom:20px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   SUCCESS
+===================================================== */
+
+.success-box{
+    display:none;
+
+    background:#dcfce7;
+    color:#166534;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-bottom:20px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+    background:white;
+
+    border-radius:14px;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+
+    padding:25px;
+
+    margin-bottom:20px;
+}
+
+.card-title{
+    color:#123c69;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    padding-bottom:14px;
+
+    margin-bottom:20px;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+
+/* =====================================================
+   APPLICATION HEADER
+===================================================== */
+
+.application-header{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.info-box{
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    padding:15px;
+}
+
+.info-label{
+    color:#6b7280;
+
+    font-size:11px;
+
+    margin-bottom:6px;
+
+    text-transform:uppercase;
+}
+
+.info-value{
+    color:#111827;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    word-break:break-word;
+}
+
+
+/* =====================================================
+   DETAILS GRID
+===================================================== */
+
+.details-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+.detail{
+    min-width:0;
+}
+
+.detail-label{
+    color:#6b7280;
+
+    font-size:11px;
+
+    margin-bottom:5px;
+
+    text-transform:uppercase;
+}
+
+.detail-value{
+    color:#111827;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+}
+
+
+/* =====================================================
+   ADDRESS
+===================================================== */
+
+.address-box{
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   DOCUMENTS
+===================================================== */
+
+.document-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.document-item{
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    background:#fafafa;
+}
+
+.document-title{
+    font-weight:bold;
+
+    font-size:13px;
+
+    color:#374151;
+
+    margin-bottom:8px;
+}
+
+.document-path{
+    font-size:12px;
+
+    color:#6b7280;
+
+    word-break:break-all;
+}
+
+.no-document{
+    color:#9ca3af;
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   VERIFY SECTION
+===================================================== */
+
+.verify-section{
+    margin-top:20px;
+
+    padding:18px;
+
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.verify-btn{
+    border:none;
+
+    background:#15803d;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.verify-btn:hover{
+    background:#166534;
+}
+
+.verify-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+.verify-message{
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.verify-success{
+    color:#15803d;
+}
+
+.verify-error{
+    color:#b91c1c;
+}
+
+
+/* =====================================================
+   FEES
+===================================================== */
+
+.fee-table-wrapper{
+    width:100%;
+
+    overflow-x:auto;
+}
+
+.fee-table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+}
+
+.fee-table th{
+    background:#f8fafc;
+
+    color:#475569;
+
+    font-size:12px;
+
+    text-align:left;
+
+    padding:13px;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+.fee-table td{
+    padding:12px;
+
+    border-bottom:1px solid #eef2f7;
+
+    vertical-align:middle;
+}
+
+.fee-name{
+    font-weight:bold;
+
+    color:#374151;
+}
+
+.amount-input{
+    width:150px;
+}
+
+.upi-input{
+    width:240px;
+}
+
+.fee-status{
+    width:140px;
+}
+
+
+/* =====================================================
+   TOTALS
+===================================================== */
+
+.totals{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.total-card{
+    padding:18px;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+}
+
+.total-label{
+    color:#6b7280;
+
+    font-size:12px;
+
+    margin-bottom:7px;
+}
+
+.total-value{
+    color:#123c69;
+
+    font-size:24px;
+
+    font-weight:bold;
+}
+
+.balance-card{
+    background:#fff7ed;
+
+    border-color:#fed7aa;
+}
+
+.balance-card .total-value{
+    color:#c2410c;
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+.save-section{
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:20px;
+}
+
+.save-btn{
+    border:none;
+
+    background:#123c69;
+
+    color:white;
+
+    padding:13px 25px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.save-btn:hover{
+    background:#0e3156;
+}
+
+.save-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading{
     text-align:center;
-    padding:80px 20px;
-    background:white;
-    border-radius:14px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
+
+    padding:70px;
+
+    color:#6b7280;
 }
 
 .spinner{
-    width:42px;
-    height:42px;
+    width:40px;
+    height:40px;
+
     border:4px solid #e5e7eb;
-    border-top-color:#2563eb;
+
+    border-top-color:#123c69;
+
     border-radius:50%;
+
     animation:spin 1s linear infinite;
+
     margin:0 auto 15px;
 }
 
@@ -108,472 +649,440 @@ body{
     }
 }
 
-/* ================= ERROR ================= */
 
-.error-box{
-    background:#fee2e2;
-    color:#991b1b;
-    padding:18px;
-    border-radius:10px;
-    display:none;
-    margin-bottom:20px;
+/* =====================================================
+   HIDDEN
+===================================================== */
+
+.hidden{
+    display:none !important;
 }
 
-/* ================= APPLICATION HEADER ================= */
 
-.application-header{
-    background:white;
-    border-radius:14px;
-    padding:22px;
-    margin-bottom:20px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
+/* =====================================================
+   FOOTER
+===================================================== */
 
-.application-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
+footer{
+    text-align:center;
 
-.application-number{
-    font-size:24px;
-    font-weight:bold;
-    color:#1e3a8a;
-}
+    padding:25px;
 
-.application-type{
-    display:inline-block;
-    margin-top:7px;
-    padding:5px 12px;
-    border-radius:20px;
-    background:#dbeafe;
-    color:#1e40af;
+    color:#6b7280;
+
     font-size:12px;
-    font-weight:bold;
 }
 
-.status{
-    padding:9px 15px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-    background:#fef3c7;
-    color:#92400e;
-}
 
-/* ================= CARDS ================= */
-
-.card{
-    background:white;
-    border-radius:14px;
-    padding:22px;
-    margin-bottom:20px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
-
-.card-title{
-    font-size:18px;
-    font-weight:bold;
-    color:#111827;
-    padding-bottom:14px;
-    margin-bottom:18px;
-    border-bottom:1px solid #e5e7eb;
-}
-
-/* ================= DETAILS ================= */
-
-.details-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-}
-
-.detail{
-    background:#f8fafc;
-    padding:13px;
-    border-radius:9px;
-}
-
-.detail-label{
-    font-size:11px;
-    text-transform:uppercase;
-    color:#64748b;
-    margin-bottom:5px;
-    font-weight:bold;
-}
-
-.detail-value{
-    font-size:14px;
-    color:#111827;
-    word-break:break-word;
-}
-
-/* ================= DOCUMENTS ================= */
-
-.documents{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-
-.document-box{
-    padding:15px;
-    background:#f8fafc;
-    border-radius:9px;
-    border:1px solid #e5e7eb;
-}
-
-.document-title{
-    font-weight:bold;
-    font-size:13px;
-    margin-bottom:7px;
-}
-
-.document-path{
-    font-size:11px;
-    color:#64748b;
-    word-break:break-all;
-}
-
-/* ================= FEE TABLE ================= */
-
-.table-wrapper{
-    overflow-x:auto;
-}
-
-.fee-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
-}
-
-.fee-table th{
-    background:#f1f5f9;
-    padding:13px;
-    text-align:left;
-    font-size:13px;
-    color:#334155;
-    border-bottom:2px solid #e2e8f0;
-}
-
-.fee-table td{
-    padding:12px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:middle;
-}
-
-.fee-name{
-    font-weight:bold;
-}
-
-.amount-input,
-.upi-input,
-.status-select{
-    width:100%;
-    padding:10px;
-    border:1px solid #cbd5e1;
-    border-radius:7px;
-    outline:none;
-    background:white;
-}
-
-.amount-input:focus,
-.upi-input:focus,
-.status-select:focus{
-    border-color:#2563eb;
-    box-shadow:0 0 0 2px rgba(37,99,235,.1);
-}
-
-.amount-input{
-    max-width:150px;
-}
-
-.status-select{
-    min-width:120px;
-}
-
-/* ================= TOTALS ================= */
-
-.total-section{
-    margin-top:20px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.total-box{
-    padding:18px;
-    border-radius:10px;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-}
-
-.total-label{
-    color:#64748b;
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.total-value{
-    font-size:22px;
-    font-weight:bold;
-    color:#111827;
-}
-
-/* ================= SAVE ================= */
-
-.save-area{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:15px;
-    margin-top:20px;
-}
-
-.save-btn{
-    border:none;
-    background:#2563eb;
-    color:white;
-    padding:13px 24px;
-    border-radius:8px;
-    font-size:14px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.save-btn:hover{
-    background:#1d4ed8;
-}
-
-.save-btn:disabled{
-    background:#94a3b8;
-    cursor:not-allowed;
-}
-
-.message{
-    padding:11px 15px;
-    border-radius:7px;
-    font-size:13px;
-    display:none;
-}
-
-.success{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.failure{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-/* ================= RESPONSIVE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:1000px){
 
+    .application-header{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
     .details-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .documents{
-        grid-template-columns:repeat(2,1fr);
+    .totals{
+        grid-template-columns:
+            1fr;
     }
 
-    .total-section{
-        grid-template-columns:1fr;
-    }
 }
 
-@media(max-width:650px){
+
+@media(max-width:700px){
 
     .header{
-        padding:15px;
-        align-items:flex-start;
+        padding:14px;
     }
 
-    .header-title h1{
-        font-size:17px;
+    .college-name{
+        font-size:16px;
     }
 
-    .header-title p{
-        font-size:11px;
+    .college-subtitle{
+        font-size:10px;
+    }
+
+    .logo{
+        width:44px;
+        height:44px;
+    }
+
+    .back-btn{
+        padding:8px 11px;
+        font-size:12px;
     }
 
     .container{
-        padding:0 10px;
+        padding:0 12px;
+
+        margin-top:20px;
+    }
+
+    .page-top{
+        flex-direction:column;
+    }
+
+    .page-title h1{
+        font-size:24px;
+    }
+
+    .application-header{
+        grid-template-columns:
+            1fr;
     }
 
     .details-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
     }
 
-    .documents{
-        grid-template-columns:1fr;
-    }
-
-    .application-number{
-        font-size:19px;
+    .document-grid{
+        grid-template-columns:
+            1fr;
     }
 
     .card{
-        padding:16px;
+        padding:18px;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
-    <div class="header-left">
+    <div class="logo-area">
 
         <div class="logo">
             MAASC
         </div>
 
-        <div class="header-title">
-            <h1>Applicant View</h1>
-            <p>MAASC Admission Portal 2026–2027</p>
+        <div>
+
+            <div class="college-name">
+                MAASC College
+            </div>
+
+            <div class="college-subtitle">
+                Admission Management System
+            </div>
+
         </div>
 
     </div>
 
-    <button class="back-btn" onclick="goBack()">
-        ← Back to Applicants
-    </button>
+
+    <a
+        href="applicant-list.html"
+        class="back-btn"
+    >
+        ← Applicants
+    </a>
 
 </header>
 
 
-<div class="container">
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
 
     <!-- LOADING -->
 
-    <div id="loading" class="loading">
+    <div
+        id="loadingBox"
+        class="loading"
+    >
 
         <div class="spinner"></div>
 
-        <h3>Loading applicant...</h3>
-
-        <p style="margin-top:7px;color:#64748b;">
-            Please wait
-        </p>
+        Loading applicant details...
 
     </div>
 
 
-    <!-- ERROR -->
 
-    <div id="errorBox" class="error-box"></div>
+    <!-- CONTENT -->
+
+    <div
+        id="content"
+        class="hidden"
+    >
 
 
-    <!-- MAIN CONTENT -->
+        <!-- =================================================
+             PAGE TITLE
+        ================================================== -->
 
-    <div id="mainContent" style="display:none;">
+        <div class="page-top">
 
-        <!-- APPLICATION HEADER -->
+            <div class="page-title">
 
-        <div class="application-header">
+                <h1>
+                    Applicant Details
+                </h1>
 
-            <div class="application-top">
+                <p>
+                    View and verify admission application
+                </p>
 
-                <div>
+            </div>
 
-                    <div class="application-number"
-                         id="applicationNumber">
-                        -
-                    </div>
 
-                    <div class="application-type"
-                         id="applicationType">
-                        -
-                    </div>
+            <div class="status-area">
 
-                </div>
+                <span class="status-label">
+                    Application Status
+                </span>
 
-                <div class="status"
-                     id="applicationStatus">
+                <span
+                    id="applicationStatus"
+                    class="status-badge status-default"
+                >
                     -
-                </div>
+                </span>
 
             </div>
 
         </div>
 
 
-        <!-- ================= APPLICANT DETAILS ================= -->
+
+        <!-- ERROR -->
+
+        <div
+            id="errorBox"
+            class="error-box"
+        ></div>
+
+
+        <!-- SUCCESS -->
+
+        <div
+            id="successBox"
+            class="success-box"
+        ></div>
+
+
+
+        <!-- =================================================
+             APPLICATION INFORMATION
+        ================================================== -->
 
         <div class="card">
 
             <div class="card-title">
-                Applicant Details
+                Application Information
             </div>
+
+
+            <div class="application-header">
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Application Number
+                    </div>
+
+                    <div
+                        id="applicationNo"
+                        class="info-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Admission Type
+                    </div>
+
+                    <div
+                        id="admissionType"
+                        class="info-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Academic Year
+                    </div>
+
+                    <div
+                        id="academicYear"
+                        class="info-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Applied Date
+                    </div>
+
+                    <div
+                        id="createdAt"
+                        class="info-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VERIFY -->
+
+            <div class="verify-section">
+
+                <button
+                    type="button"
+                    id="verifyBtn"
+                    class="verify-btn"
+                >
+                    ✓ Verify Application
+                </button>
+
+
+                <span
+                    id="verifyMessage"
+                    class="verify-message"
+                ></span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PERSONAL DETAILS
+        ================================================== -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Personal Details
+            </div>
+
 
             <div class="details-grid">
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Applicant Name
                     </div>
-                    <div class="detail-value"
-                         id="applicantName">
+
+                    <div
+                        id="applicantName"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Date of Birth
                     </div>
-                    <div class="detail-value"
-                         id="dob">
+
+                    <div
+                        id="dob"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Gender
                     </div>
-                    <div class="detail-value"
-                         id="gender">
+
+                    <div
+                        id="gender"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Mobile
                     </div>
-                    <div class="detail-value"
-                         id="mobile">
+
+                    <div
+                        id="mobile"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Email
                     </div>
-                    <div class="detail-value"
-                         id="email">
-                        -
-                    </div>
-                </div>
 
-                <div class="detail">
-                    <div class="detail-label">
-                        Admission Type
-                    </div>
-                    <div class="detail-value"
-                         id="admissionType">
+                    <div
+                        id="email"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
             </div>
@@ -581,7 +1090,10 @@ body{
         </div>
 
 
-        <!-- ================= COURSE DETAILS ================= -->
+
+        <!-- =================================================
+             COURSE DETAILS
+        ================================================== -->
 
         <div class="card">
 
@@ -589,66 +1101,103 @@ body{
                 Course / Admission Details
             </div>
 
+
             <div class="details-grid">
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Course
                     </div>
-                    <div class="detail-value"
-                         id="course">
+
+                    <div
+                        id="course"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Department
                     </div>
-                    <div class="detail-value"
-                         id="department">
+
+                    <div
+                        id="department"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
-                <div class="detail">
-                    <div class="detail-label">
-                        Academic Year
-                    </div>
-                    <div class="detail-value"
-                         id="academicYear">
-                        -
-                    </div>
-                </div>
 
                 <div class="detail">
+
                     <div class="detail-label">
                         Year
                     </div>
-                    <div class="detail-value"
-                         id="year">
+
+                    <div
+                        id="year"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Section
                     </div>
-                    <div class="detail-value"
-                         id="section">
+
+                    <div
+                        id="section"
+                        class="detail-value"
+                    >
                         Not Assigned
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
+                    <div class="detail-label">
+                        Selection Status
+                    </div>
+
+                    <div
+                        id="selectionStatus"
+                        class="detail-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
                     <div class="detail-label">
                         Admission Status
                     </div>
-                    <div class="detail-value"
-                         id="admissionStatus">
+
+                    <div
+                        id="admissionStatus"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
             </div>
@@ -656,7 +1205,10 @@ body{
         </div>
 
 
-        <!-- ================= PARENT DETAILS ================= -->
+
+        <!-- =================================================
+             PARENT DETAILS
+        ================================================== -->
 
         <div class="card">
 
@@ -664,26 +1216,39 @@ body{
                 Parent / Guardian Details
             </div>
 
+
             <div class="details-grid">
 
-                <div class="detail">
-                    <div class="detail-label">
-                        Parent Name
-                    </div>
-                    <div class="detail-value"
-                         id="parentName">
-                        -
-                    </div>
-                </div>
 
                 <div class="detail">
+
+                    <div class="detail-label">
+                        Parent / Guardian Name
+                    </div>
+
+                    <div
+                        id="parentName"
+                        class="detail-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
                     <div class="detail-label">
                         Parent Mobile
                     </div>
-                    <div class="detail-value"
-                         id="parentMobile">
+
+                    <div
+                        id="parentMobile"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
             </div>
@@ -691,7 +1256,10 @@ body{
         </div>
 
 
-        <!-- ================= ADDRESS ================= -->
+
+        <!-- =================================================
+             ADDRESS
+        ================================================== -->
 
         <div class="card">
 
@@ -699,121 +1267,109 @@ body{
                 Address
             </div>
 
-            <div class="details-grid">
 
-                <div class="detail">
-                    <div class="detail-label">
-                        Address
-                    </div>
-                    <div class="detail-value"
-                         id="address">
-                        -
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-label">
-                        City
-                    </div>
-                    <div class="detail-value"
-                         id="city">
-                        -
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-label">
-                        District
-                    </div>
-                    <div class="detail-value"
-                         id="district">
-                        -
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-label">
-                        State
-                    </div>
-                    <div class="detail-value"
-                         id="state">
-                        -
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-label">
-                        Pincode
-                    </div>
-                    <div class="detail-value"
-                         id="pincode">
-                        -
-                    </div>
-                </div>
-
+            <div
+                id="address"
+                class="address-box"
+            >
+                -
             </div>
 
         </div>
 
 
-        <!-- ================= QUALIFICATION ================= -->
+
+        <!-- =================================================
+             QUALIFICATION
+        ================================================== -->
 
         <div class="card">
 
             <div class="card-title">
-                Qualification Details
+                Previous Qualification
             </div>
+
 
             <div class="details-grid">
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Previous Course
                     </div>
-                    <div class="detail-value"
-                         id="previousCourse">
+
+                    <div
+                        id="previousCourse"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Previous Institution
                     </div>
-                    <div class="detail-value"
-                         id="previousInstitution">
+
+                    <div
+                        id="previousInstitution"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Passing Year
                     </div>
-                    <div class="detail-value"
-                         id="passingYear">
+
+                    <div
+                        id="passingYear"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Marks
                     </div>
-                    <div class="detail-value"
-                         id="marks">
+
+                    <div
+                        id="marks"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
+
                 <div class="detail">
+
                     <div class="detail-label">
                         Percentage
                     </div>
-                    <div class="detail-value"
-                         id="percentage">
+
+                    <div
+                        id="percentage"
+                        class="detail-value"
+                    >
                         -
                     </div>
+
                 </div>
 
             </div>
@@ -821,7 +1377,10 @@ body{
         </div>
 
 
-        <!-- ================= DOCUMENTS ================= -->
+
+        <!-- =================================================
+             DOCUMENTS
+        ================================================== -->
 
         <div class="card">
 
@@ -829,59 +1388,69 @@ body{
                 Uploaded Documents
             </div>
 
-            <div class="documents">
 
-                <div class="document-box">
+            <div class="document-grid">
+
+
+                <div class="document-item">
 
                     <div class="document-title">
                         Applicant Photo
                     </div>
 
-                    <div class="document-path"
-                         id="photoPath">
-                        Not uploaded
+                    <div
+                        id="photoDocument"
+                        class="document-path"
+                    >
+                        -
                     </div>
 
                 </div>
 
 
-                <div class="document-box">
+                <div class="document-item">
 
                     <div class="document-title">
                         Marksheet
                     </div>
 
-                    <div class="document-path"
-                         id="marksheetPath">
-                        Not uploaded
+                    <div
+                        id="marksheetDocument"
+                        class="document-path"
+                    >
+                        -
                     </div>
 
                 </div>
 
 
-                <div class="document-box">
+                <div class="document-item">
 
                     <div class="document-title">
                         Transfer Certificate
                     </div>
 
-                    <div class="document-path"
-                         id="tcPath">
-                        Not uploaded
+                    <div
+                        id="tcDocument"
+                        class="document-path"
+                    >
+                        -
                     </div>
 
                 </div>
 
 
-                <div class="document-box">
+                <div class="document-item">
 
                     <div class="document-title">
                         Other Document
                     </div>
 
-                    <div class="document-path"
-                         id="otherPath">
-                        Not uploaded
+                    <div
+                        id="otherDocument"
+                        class="document-path"
+                    >
+                        -
                     </div>
 
                 </div>
@@ -891,15 +1460,19 @@ body{
         </div>
 
 
-        <!-- ================= FEE DETAILS ================= -->
+
+        <!-- =================================================
+             FEES
+        ================================================== -->
 
         <div class="card">
 
             <div class="card-title">
-                Fee Payment Details
+                Fee Details
             </div>
 
-            <div class="table-wrapper">
+
+            <div class="fee-table-wrapper">
 
                 <table class="fee-table">
 
@@ -907,19 +1480,19 @@ body{
 
                         <tr>
 
-                            <th style="width:22%;">
+                            <th>
                                 Fee Type
                             </th>
 
-                            <th style="width:18%;">
-                                Amount (₹)
+                            <th>
+                                Amount
                             </th>
 
-                            <th style="width:35%;">
+                            <th>
                                 UPI Transaction ID
                             </th>
 
-                            <th style="width:25%;">
+                            <th>
                                 Payment Status
                             </th>
 
@@ -927,7 +1500,9 @@ body{
 
                     </thead>
 
+
                     <tbody>
+
 
                         <!-- APPLICATION FEE -->
 
@@ -938,27 +1513,35 @@ body{
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="applicationFeeAmount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="applicationFeeUpi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="applicationFeeStatus">
+                                    id="applicationFeeStatus"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -969,6 +1552,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -979,31 +1563,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 1 Fees
+                                Semester 1
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester1Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester1Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester1Status">
+                                    id="semester1Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1014,6 +1606,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1024,31 +1617,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 2 Fees
+                                Semester 2
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester2Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester2Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester2Status">
+                                    id="semester2Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1059,6 +1660,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1069,31 +1671,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 3 Fees
+                                Semester 3
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester3Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester3Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester3Status">
+                                    id="semester3Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1104,6 +1714,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1114,31 +1725,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 4 Fees
+                                Semester 4
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester4Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester4Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester4Status">
+                                    id="semester4Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1149,6 +1768,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1159,31 +1779,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 5 Fees
+                                Semester 5
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester5Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester5Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester5Status">
+                                    id="semester5Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1194,6 +1822,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1204,31 +1833,39 @@ body{
                         <tr>
 
                             <td class="fee-name">
-                                Semester 6 Fees
+                                Semester 6
                             </td>
 
                             <td>
+
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
-                                    class="amount-input fee-amount"
                                     id="semester6Amount"
-                                    placeholder="0">
+                                    class="amount-input"
+                                    placeholder="0"
+                                >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
-                                    class="upi-input"
                                     id="semester6Upi"
-                                    placeholder="Enter UPI Transaction ID">
+                                    class="upi-input"
+                                    placeholder="UPI Transaction ID"
+                                >
+
                             </td>
 
                             <td>
+
                                 <select
-                                    class="status-select fee-status"
-                                    id="semester6Status">
+                                    id="semester6Status"
+                                    class="fee-status"
+                                >
 
                                     <option value="Pending">
                                         Pending
@@ -1239,6 +1876,7 @@ body{
                                     </option>
 
                                 </select>
+
                             </td>
 
                         </tr>
@@ -1250,46 +1888,54 @@ body{
             </div>
 
 
+
             <!-- TOTALS -->
 
-            <div class="total-section">
+            <div class="totals">
 
-                <div class="total-box">
+
+                <div class="total-card">
 
                     <div class="total-label">
                         Total Fee
                     </div>
 
-                    <div class="total-value"
-                         id="totalFee">
+                    <div
+                        id="totalFee"
+                        class="total-value"
+                    >
                         ₹0.00
                     </div>
 
                 </div>
 
 
-                <div class="total-box">
+                <div class="total-card">
 
                     <div class="total-label">
                         Total Paid
                     </div>
 
-                    <div class="total-value"
-                         id="totalPaid">
+                    <div
+                        id="totalPaid"
+                        class="total-value"
+                    >
                         ₹0.00
                     </div>
 
                 </div>
 
 
-                <div class="total-box">
+                <div class="total-card balance-card">
 
                     <div class="total-label">
                         Balance
                     </div>
 
-                    <div class="total-value"
-                         id="balance">
+                    <div
+                        id="balanceFee"
+                        class="total-value"
+                    >
                         ₹0.00
                     </div>
 
@@ -1298,41 +1944,49 @@ body{
             </div>
 
 
+
             <!-- SAVE -->
 
-            <div class="save-area">
-
-                <div id="successMessage"
-                     class="message success">
-                    Fee details saved successfully.
-                </div>
-
-                <div id="errorMessage"
-                     class="message failure">
-                    Unable to save fee details.
-                </div>
+            <div class="save-section">
 
                 <button
-                    id="saveBtn"
-                    class="save-btn">
-
+                    type="button"
+                    id="saveFeeBtn"
+                    class="save-btn"
+                >
                     Save Fee Details
-
                 </button>
 
             </div>
 
         </div>
 
+
     </div>
 
-</div>
+</main>
 
+
+
+<footer>
+
+    © 2026 MAASC College · Admission Management System
+
+</footer>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
 import {
     getFirestore,
@@ -1340,13 +1994,13 @@ import {
     getDoc,
     updateDoc,
     serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================================================
+
+/* =====================================================
    FIREBASE CONFIG
-========================================================= */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1371,68 +2025,354 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
 
 
-/* =========================================================
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================================
    APPLICATION ID
-========================================================= */
+===================================================== */
 
 const params =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+        window.location.search
+    );
+
 
 const applicationId =
     params.get("id");
 
 
-/* =========================================================
-   ELEMENT HELPERS
-========================================================= */
 
-function setText(id, value){
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loadingBox =
+    document.getElementById(
+        "loadingBox"
+    );
+
+const content =
+    document.getElementById(
+        "content"
+    );
+
+const errorBox =
+    document.getElementById(
+        "errorBox"
+    );
+
+const successBox =
+    document.getElementById(
+        "successBox"
+    );
+
+const verifyBtn =
+    document.getElementById(
+        "verifyBtn"
+    );
+
+const verifyMessage =
+    document.getElementById(
+        "verifyMessage"
+    );
+
+const saveFeeBtn =
+    document.getElementById(
+        "saveFeeBtn"
+    );
+
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message){
+
+    errorBox.textContent =
+        message;
+
+    errorBox.style.display =
+        "block";
+
+}
+
+
+
+/* =====================================================
+   SHOW SUCCESS
+===================================================== */
+
+function showSuccess(message){
+
+    successBox.textContent =
+        message;
+
+    successBox.style.display =
+        "block";
+
+}
+
+
+
+/* =====================================================
+   HIDE MESSAGES
+===================================================== */
+
+function clearMessages(){
+
+    errorBox.style.display =
+        "none";
+
+    successBox.style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/* =====================================================
+   SET TEXT
+===================================================== */
+
+function setText(
+    id,
+    value,
+    fallback = "-"
+){
 
     const element =
         document.getElementById(id);
 
-    if(!element) return;
 
-    if(
-        value === undefined ||
-        value === null ||
-        value === ""
-    ){
+    if(!element){
+        return;
+    }
 
-        element.textContent = "-";
 
-    }else{
+    element.textContent =
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+            ? value
+            : fallback;
 
-        element.textContent = value;
+}
+
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value){
+        return "-";
+    }
+
+
+    try{
+
+        let date;
+
+
+        if(
+            typeof value === "object" &&
+            typeof value.toDate === "function"
+        ){
+
+            date =
+                value.toDate();
+
+        }
+
+        else if(
+            typeof value === "object" &&
+            value.seconds !== undefined
+        ){
+
+            date =
+                new Date(
+                    Number(
+                        value.seconds
+                    ) * 1000
+                );
+
+        }
+
+        else{
+
+            date =
+                new Date(value);
+
+        }
+
+
+        if(
+            isNaN(
+                date.getTime()
+            )
+        ){
+
+            return "-";
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
+
+    }
+    catch(error){
+
+        return "-";
 
     }
 
 }
 
 
-/* =========================================================
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(status){
+
+    const value =
+        String(
+            status || ""
+        )
+        .toLowerCase();
+
+
+    if(
+        value.includes("pending")
+    ){
+        return "status-pending";
+    }
+
+
+    if(
+        value.includes("verif")
+    ){
+        return "status-verified";
+    }
+
+
+    if(
+        value.includes("select")
+    ){
+        return "status-selected";
+    }
+
+
+    if(
+        value.includes("confirm")
+    ){
+        return "status-confirmed";
+    }
+
+
+    if(
+        value.includes("reject")
+    ){
+        return "status-rejected";
+    }
+
+
+    return "status-default";
+
+}
+
+
+
+/* =====================================================
    LOAD APPLICANT
-========================================================= */
+===================================================== */
 
 async function loadApplicant(){
 
+    clearMessages();
+
+
+    if(!applicationId){
+
+        loadingBox.innerHTML = `
+
+            <div>
+                Application ID is missing.
+            </div>
+
+        `;
+
+        showError(
+            "No applicant document ID was supplied in the URL."
+        );
+
+        return;
+
+    }
+
+
     try{
 
-        if(!applicationId){
-
-            throw new Error(
-                "Application ID is missing from the URL."
-            );
-
-        }
-
-
-        const applicationRef =
+        const applicantRef =
             doc(
                 db,
                 "admissions",
@@ -1440,304 +2380,475 @@ async function loadApplicant(){
             );
 
 
-        const snapshot =
-            await getDoc(applicationRef);
-
-
-        if(!snapshot.exists()){
-
-            throw new Error(
-                "Applicant record was not found."
+        const applicantSnap =
+            await getDoc(
+                applicantRef
             );
+
+
+        if(
+            !applicantSnap.exists()
+        ){
+
+            loadingBox.innerHTML = `
+
+                <div>
+                    Applicant not found.
+                </div>
+
+            `;
+
+            showError(
+                "The requested admission application does not exist."
+            );
+
+            return;
 
         }
 
 
         const data =
-            snapshot.data();
+            applicantSnap.data();
 
 
-        /* ================= APPLICATION ================= */
-
-        setText(
-            "applicationNumber",
-            data.applicationNo || applicationId
-        );
-
-        setText(
-            "applicationType",
-            data.admissionType || "-"
-        );
-
-        setText(
-            "applicationStatus",
-            data.applicationStatus ||
-            data.status ||
-            "Pending"
+        console.log(
+            "APPLICANT DATA:",
+            data
         );
 
 
-        /* ================= APPLICANT ================= */
-
-        setText(
-            "applicantName",
-            data.applicantName
-        );
-
-        setText(
-            "dob",
-            data.dob
-        );
-
-        setText(
-            "gender",
-            data.gender
-        );
-
-        setText(
-            "mobile",
-            data.mobile
-        );
-
-        setText(
-            "email",
-            data.email
-        );
-
-        setText(
-            "admissionType",
-            data.admissionType
+        displayApplicant(
+            data
         );
 
 
-        /* ================= COURSE ================= */
-
-        setText(
-            "course",
-            data.course
-        );
-
-        setText(
-            "department",
-            data.department
-        );
-
-        setText(
-            "academicYear",
-            data.academicYear
-        );
-
-        setText(
-            "year",
-            data.year || "I Year"
-        );
-
-        setText(
-            "section",
-            data.section || "Not Assigned"
-        );
-
-        setText(
-            "admissionStatus",
-            data.admissionStatus
+        loadFeeDetails(
+            data
         );
 
 
-        /* ================= PARENT ================= */
-
-        setText(
-            "parentName",
-            data.parentName
+        loadingBox.classList.add(
+            "hidden"
         );
 
-        setText(
-            "parentMobile",
-            data.parentMobile
+        content.classList.remove(
+            "hidden"
         );
 
 
-        /* ================= ADDRESS ================= */
-
-        setText(
-            "address",
-            data.address
-        );
-
-        setText(
-            "city",
-            data.city
-        );
-
-        setText(
-            "district",
-            data.district
-        );
-
-        setText(
-            "state",
-            data.state
-        );
-
-        setText(
-            "pincode",
-            data.pincode
-        );
-
-
-        /* ================= QUALIFICATION ================= */
-
-        setText(
-            "previousCourse",
-            data.previousCourse
-        );
-
-        setText(
-            "previousInstitution",
-            data.previousInstitution
-        );
-
-        setText(
-            "passingYear",
-            data.passingYear
-        );
-
-        setText(
-            "marks",
-            data.marks
-        );
-
-        setText(
-            "percentage",
-            data.percentage
-        );
-
-
-        /* ================= DOCUMENTS ================= */
-
-        setText(
-            "photoPath",
-            data.photoStoragePath ||
-            "Not uploaded"
-        );
-
-        setText(
-            "marksheetPath",
-            data.marksheetStoragePath ||
-            "Not uploaded"
-        );
-
-        setText(
-            "tcPath",
-            data.transferCertificateStoragePath ||
-            "Not uploaded"
-        );
-
-        setText(
-            "otherPath",
-            data.otherDocumentStoragePath ||
-            "Not uploaded"
-        );
-
-
-        /* ================= FEE DATA ================= */
-
-        loadFeeData(data);
-
-
-        /* ================= SHOW PAGE ================= */
-
-        document.getElementById("loading")
-            .style.display = "none";
-
-        document.getElementById("mainContent")
-            .style.display = "block";
-
-
-    }catch(error){
+    }
+    catch(error){
 
         console.error(
-            "APPLICANT LOAD ERROR:",
+            "LOAD APPLICANT ERROR:",
             error
         );
 
 
-        document.getElementById("loading")
-            .style.display = "none";
+        loadingBox.innerHTML = `
+
+            <div>
+                Unable to load applicant.
+            </div>
+
+        `;
 
 
-        const errorBox =
-            document.getElementById("errorBox");
-
-
-        errorBox.textContent =
-            error.message ||
-            "Unable to load applicant.";
-
-
-        errorBox.style.display =
-            "block";
+        showError(
+            "Unable to load applicant: " +
+            error.message
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   LOAD FEE DATA
-========================================================= */
 
-function loadFeeData(data){
+/* =====================================================
+   DISPLAY APPLICANT
+===================================================== */
+
+function displayApplicant(data){
+
+
+    const applicationStatus =
+        data.applicationStatus ||
+        data.status ||
+        data.admissionStatus ||
+        "Pending Verification";
+
+
+    /* Application information */
+
+    setText(
+        "applicationNo",
+        data.applicationNo
+    );
+
+
+    setText(
+        "admissionType",
+        data.admissionType
+    );
+
+
+    setText(
+        "academicYear",
+        data.academicYear
+    );
+
+
+    setText(
+        "createdAt",
+        formatDate(
+            data.createdAt
+        )
+    );
+
+
+    /* Status */
+
+    const statusElement =
+        document.getElementById(
+            "applicationStatus"
+        );
+
+
+    statusElement.textContent =
+        applicationStatus;
+
+
+    statusElement.className =
+        "status-badge " +
+        getStatusClass(
+            applicationStatus
+        );
+
+
+    /* Personal */
+
+    setText(
+        "applicantName",
+        data.applicantName
+    );
+
+
+    setText(
+        "dob",
+        data.dob
+    );
+
+
+    setText(
+        "gender",
+        data.gender
+    );
+
+
+    setText(
+        "mobile",
+        data.mobile
+    );
+
+
+    setText(
+        "email",
+        data.email
+    );
+
+
+    /* Course */
+
+    setText(
+        "course",
+        data.course
+    );
+
+
+    setText(
+        "department",
+        data.department ||
+        data.course
+    );
+
+
+    setText(
+        "year",
+        data.year,
+        "I Year"
+    );
+
+
+    setText(
+        "section",
+        data.section,
+        "Not Assigned"
+    );
+
+
+    setText(
+        "selectionStatus",
+        data.selectionStatus
+    );
+
+
+    setText(
+        "admissionStatus",
+        data.admissionStatus
+    );
+
+
+    /* Parent */
+
+    setText(
+        "parentName",
+        data.parentName
+    );
+
+
+    setText(
+        "parentMobile",
+        data.parentMobile
+    );
+
+
+    /* Address */
+
+    const addressParts = [
+
+        data.address,
+
+        data.city,
+
+        data.district,
+
+        data.state,
+
+        data.pincode
+
+    ]
+    .filter(
+        value =>
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ""
+    );
+
+
+    setText(
+        "address",
+        addressParts.join(", ")
+    );
+
+
+    /* Qualification */
+
+    setText(
+        "previousCourse",
+        data.previousCourse
+    );
+
+
+    setText(
+        "previousInstitution",
+        data.previousInstitution
+    );
+
+
+    setText(
+        "passingYear",
+        data.passingYear
+    );
+
+
+    setText(
+        "marks",
+        data.marks
+    );
+
+
+    setText(
+        "percentage",
+        data.percentage
+    );
+
+
+    /* Documents */
+
+    setDocument(
+        "photoDocument",
+        data.photoStoragePath ||
+        data.photoURL
+    );
+
+
+    setDocument(
+        "marksheetDocument",
+        data.marksheetStoragePath ||
+        data.marksheetURL
+    );
+
+
+    setDocument(
+        "tcDocument",
+        data.transferCertificateStoragePath ||
+        data.transferCertificateURL
+    );
+
+
+    setDocument(
+        "otherDocument",
+        data.otherDocumentStoragePath ||
+        data.otherDocumentURL
+    );
+
+
+    /*
+     * Verification button
+     */
+
+    if(
+        String(
+            applicationStatus
+        )
+        .toLowerCase()
+        .includes("verified")
+    ){
+
+        verifyBtn.textContent =
+            "✓ Application Verified";
+
+        verifyBtn.disabled =
+            true;
+
+        verifyMessage.textContent =
+            "This application has already been verified.";
+
+        verifyMessage.className =
+            "verify-message verify-success";
+
+    }
+    else{
+
+        verifyBtn.textContent =
+            "✓ Verify Application";
+
+        verifyBtn.disabled =
+            false;
+
+        verifyMessage.textContent =
+            "";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DOCUMENT DISPLAY
+===================================================== */
+
+function setDocument(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(!value){
+
+        element.innerHTML =
+            `<span class="no-document">
+                No document uploaded
+            </span>`;
+
+        return;
+
+    }
+
+
+    element.textContent =
+        value;
+
+}
+
+
+
+/* =====================================================
+   LOAD FEE DETAILS
+===================================================== */
+
+function loadFeeDetails(data){
+
 
     const applicationFee =
-        data.applicationFee || {};
+        data.applicationFee ||
+        {};
 
 
-    document.getElementById(
-        "applicationFeeAmount"
-    ).value =
-        applicationFee.amount || "";
+    setInputValue(
+        "applicationFeeAmount",
+        applicationFee.amount
+    );
 
 
-    document.getElementById(
-        "applicationFeeUpi"
-    ).value =
-        applicationFee.upiTransactionId || "";
+    setInputValue(
+        "applicationFeeUpi",
+        applicationFee.upiTransactionId
+    );
 
 
-    document.getElementById(
-        "applicationFeeStatus"
-    ).value =
-        applicationFee.status || "Pending";
+    setSelectValue(
+        "applicationFeeStatus",
+        applicationFee.status ||
+        "Pending"
+    );
 
 
     const semesterFees =
-        data.semesterFees || {};
+        data.semesterFees ||
+        {};
 
 
-    for(let i = 1; i <= 6; i++){
+    for(
+        let i = 1;
+        i <= 6;
+        i++
+    ){
 
-        const semester =
+        const fee =
             semesterFees[
                 "semester" + i
             ] || {};
 
 
-        document.getElementById(
-            `semester${i}Amount`
-        ).value =
-            semester.amount || "";
+        setInputValue(
+            "semester" +
+            i +
+            "Amount",
+            fee.amount
+        );
 
 
-        document.getElementById(
-            `semester${i}Upi`
-        ).value =
-            semester.upiTransactionId || "";
+        setInputValue(
+            "semester" +
+            i +
+            "Upi",
+            fee.upiTransactionId
+        );
 
 
-        document.getElementById(
-            `semester${i}Status`
-        ).value =
-            semester.status || "Pending";
+        setSelectValue(
+            "semester" +
+            i +
+            "Status",
+            fee.status ||
+            "Pending"
+        );
 
     }
 
@@ -1747,9 +2858,96 @@ function loadFeeData(data){
 }
 
 
-/* =========================================================
+
+/* =====================================================
+   INPUT VALUE
+===================================================== */
+
+function setInputValue(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(!element){
+        return;
+    }
+
+
+    if(
+        value !== undefined &&
+        value !== null
+    ){
+
+        element.value =
+            value;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SELECT VALUE
+===================================================== */
+
+function setSelectValue(
+    id,
+    value
+){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(!element){
+        return;
+    }
+
+
+    element.value =
+        value;
+
+}
+
+
+
+/* =====================================================
+   GET NUMBER
+===================================================== */
+
+function getNumber(id){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(!element){
+        return 0;
+    }
+
+
+    const value =
+        parseFloat(
+            element.value
+        );
+
+
+    return isNaN(value)
+        ? 0
+        : value;
+
+}
+
+
+
+/* =====================================================
    CALCULATE TOTALS
-========================================================= */
+===================================================== */
 
 function calculateTotals(){
 
@@ -1758,56 +2956,68 @@ function calculateTotals(){
     let totalPaid = 0;
 
 
-    /* APPLICATION FEE */
+    /*
+     * Application Fee
+     */
 
     const applicationAmount =
-        Number(
-            document.getElementById(
-                "applicationFeeAmount"
-            ).value
-        ) || 0;
+        getNumber(
+            "applicationFeeAmount"
+        );
 
 
-    const applicationStatus =
+    totalFee +=
+        applicationAmount;
+
+
+    if(
         document.getElementById(
             "applicationFeeStatus"
-        ).value;
+        ).value === "Paid"
+    ){
 
-
-    totalFee += applicationAmount;
-
-
-    if(applicationStatus === "Paid"){
-
-        totalPaid += applicationAmount;
+        totalPaid +=
+            applicationAmount;
 
     }
 
 
-    /* SEMESTERS */
+    /*
+     * Semesters
+     */
 
-    for(let i = 1; i <= 6; i++){
+    for(
+        let i = 1;
+        i <= 6;
+        i++
+    ){
 
         const amount =
-            Number(
-                document.getElementById(
-                    `semester${i}Amount`
-                ).value
-            ) || 0;
+            getNumber(
+                "semester" +
+                i +
+                "Amount"
+            );
 
 
         const status =
             document.getElementById(
-                `semester${i}Status`
+                "semester" +
+                i +
+                "Status"
             ).value;
 
 
-        totalFee += amount;
+        totalFee +=
+            amount;
 
 
-        if(status === "Paid"){
+        if(
+            status === "Paid"
+        ){
 
-            totalPaid += amount;
+            totalPaid +=
+                amount;
 
         }
 
@@ -1815,257 +3025,405 @@ function calculateTotals(){
 
 
     const balance =
-        totalFee - totalPaid;
+        totalFee -
+        totalPaid;
 
 
     document.getElementById(
         "totalFee"
     ).textContent =
-        formatCurrency(totalFee);
+        formatCurrency(
+            totalFee
+        );
 
 
     document.getElementById(
         "totalPaid"
     ).textContent =
-        formatCurrency(totalPaid);
+        formatCurrency(
+            totalPaid
+        );
 
 
     document.getElementById(
-        "balance"
+        "balanceFee"
     ).textContent =
-        formatCurrency(balance);
+        formatCurrency(
+            balance
+        );
 
 }
 
 
-/* =========================================================
+
+/* =====================================================
    CURRENCY
-========================================================= */
+===================================================== */
 
-function formatCurrency(amount){
+function formatCurrency(value){
 
-    return "₹" +
-        Number(amount || 0)
-            .toLocaleString(
-                "en-IN",
-                {
-                    minimumFractionDigits:2,
-                    maximumFractionDigits:2
-                }
-            );
+    return new Intl.NumberFormat(
+        "en-IN",
+        {
+            style:"currency",
+            currency:"INR",
+            minimumFractionDigits:2
+        }
+    ).format(
+        Number(value) || 0
+    );
 
 }
 
 
-/* =========================================================
-   SAVE FEE DETAILS
-========================================================= */
 
-async function saveFeeDetails(){
+/* =====================================================
+   FEE EVENT LISTENERS
+===================================================== */
 
-    const saveBtn =
-        document.getElementById("saveBtn");
+document.querySelectorAll(
+    ".amount-input, .fee-status"
+).forEach(
+    element => {
 
-
-    const successMessage =
-        document.getElementById(
-            "successMessage"
+        element.addEventListener(
+            "input",
+            calculateTotals
         );
 
-
-    const errorMessage =
-        document.getElementById(
-            "errorMessage"
+        element.addEventListener(
+            "change",
+            calculateTotals
         );
 
-
-    successMessage.style.display =
-        "none";
-
-    errorMessage.style.display =
-        "none";
+    }
+);
 
 
-    try{
 
-        saveBtn.disabled = true;
+/* =====================================================
+   VERIFY APPLICATION
+===================================================== */
 
-        saveBtn.textContent =
-            "Saving...";
+verifyBtn.addEventListener(
+    "click",
+    async function(){
 
-
-        /* ================= APPLICATION FEE ================= */
-
-        const applicationFee = {
-
-            amount:
-                Number(
-                    document.getElementById(
-                        "applicationFeeAmount"
-                    ).value
-                ) || 0,
-
-            upiTransactionId:
-                document.getElementById(
-                    "applicationFeeUpi"
-                ).value.trim(),
-
-            status:
-                document.getElementById(
-                    "applicationFeeStatus"
-                ).value
-
-        };
+        clearMessages();
 
 
-        /* ================= SEMESTER FEES ================= */
+        if(!applicationId){
 
-        const semesterFees = {};
+            verifyMessage.textContent =
+                "Application ID is missing.";
 
+            verifyMessage.className =
+                "verify-message verify-error";
 
-        for(let i = 1; i <= 6; i++){
-
-            semesterFees[
-                "semester" + i
-            ] = {
-
-                amount:
-                    Number(
-                        document.getElementById(
-                            `semester${i}Amount`
-                        ).value
-                    ) || 0,
-
-                upiTransactionId:
-                    document.getElementById(
-                        `semester${i}Upi`
-                    ).value.trim(),
-
-                status:
-                    document.getElementById(
-                        `semester${i}Status`
-                    ).value
-
-            };
+            return;
 
         }
 
 
-        /* ================= SAVE ================= */
-
-        const applicationRef =
-            doc(
-                db,
-                "admissions",
-                applicationId
+        const confirmed =
+            confirm(
+                "Are you sure you want to verify this application?"
             );
 
 
-        await updateDoc(
-            applicationRef,
-            {
-
-                applicationFee:
-                    applicationFee,
-
-                semesterFees:
-                    semesterFees,
-
-                updatedAt:
-                    serverTimestamp()
-
-            }
-        );
+        if(!confirmed){
+            return;
+        }
 
 
-        calculateTotals();
+        verifyBtn.disabled =
+            true;
 
 
-        successMessage.textContent =
-            "Fee details saved successfully.";
+        verifyBtn.textContent =
+            "Verifying...";
 
 
-        successMessage.style.display =
-            "block";
+        verifyMessage.textContent =
+            "";
 
 
-    }catch(error){
+        try{
 
-        console.error(
-            "SAVE FEE ERROR:",
-            error
-        );
-
-
-        errorMessage.textContent =
-            "Unable to save fee details: " +
-            error.message;
+            const applicationRef =
+                doc(
+                    db,
+                    "admissions",
+                    applicationId
+                );
 
 
-        errorMessage.style.display =
-            "block";
+            await updateDoc(
+                applicationRef,
+                {
+
+                    applicationStatus:
+                        "Verified",
+
+                    documentStatus:
+                        "Verified",
+
+                    verifiedAt:
+                        serverTimestamp(),
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
 
 
-    }finally{
+            /*
+             * Update page immediately
+             */
 
-        saveBtn.disabled = false;
+            const statusElement =
+                document.getElementById(
+                    "applicationStatus"
+                );
 
-        saveBtn.textContent =
-            "Save Fee Details";
+
+            statusElement.textContent =
+                "Verified";
+
+
+            statusElement.className =
+                "status-badge status-verified";
+
+
+            verifyBtn.textContent =
+                "✓ Application Verified";
+
+
+            verifyBtn.disabled =
+                true;
+
+
+            verifyMessage.textContent =
+                "Application verified successfully.";
+
+            verifyMessage.className =
+                "verify-message verify-success";
+
+
+            showSuccess(
+                "Application " +
+                (
+                    document.getElementById(
+                        "applicationNo"
+                    ).textContent
+                ) +
+                " has been verified successfully."
+            );
+
+
+        }
+        catch(error){
+
+            console.error(
+                "VERIFY APPLICATION ERROR:",
+                error
+            );
+
+
+            verifyBtn.disabled =
+                false;
+
+
+            verifyBtn.textContent =
+                "✓ Verify Application";
+
+
+            verifyMessage.textContent =
+                "Verification failed: " +
+                error.message;
+
+
+            verifyMessage.className =
+                "verify-message verify-error";
+
+
+            showError(
+                "Unable to verify application: " +
+                error.message
+            );
+
+        }
 
     }
-
-}
-
-
-/* =========================================================
-   EVENT LISTENERS
-========================================================= */
-
-document.querySelectorAll(
-    ".fee-amount, .fee-status"
-).forEach(element => {
-
-    element.addEventListener(
-        "input",
-        calculateTotals
-    );
-
-    element.addEventListener(
-        "change",
-        calculateTotals
-    );
-
-});
-
-
-document.getElementById(
-    "saveBtn"
-).addEventListener(
-    "click",
-    saveFeeDetails
 );
 
 
-/* =========================================================
-   BACK
-========================================================= */
 
-window.goBack = function(){
+/* =====================================================
+   SAVE FEE DETAILS
+===================================================== */
 
-    window.location.href =
-        "applicant-list.html";
+saveFeeBtn.addEventListener(
+    "click",
+    async function(){
 
-};
+        clearMessages();
 
 
-/* =========================================================
+        if(!applicationId){
+
+            showError(
+                "Application ID is missing."
+            );
+
+            return;
+
+        }
+
+
+        saveFeeBtn.disabled =
+            true;
+
+
+        saveFeeBtn.textContent =
+            "Saving...";
+
+
+        try{
+
+
+            const applicationFee = {
+
+                amount:
+                    getNumber(
+                        "applicationFeeAmount"
+                    ),
+
+                upiTransactionId:
+                    document.getElementById(
+                        "applicationFeeUpi"
+                    ).value.trim(),
+
+                status:
+                    document.getElementById(
+                        "applicationFeeStatus"
+                    ).value
+
+            };
+
+
+            const semesterFees = {};
+
+
+            for(
+                let i = 1;
+                i <= 6;
+                i++
+            ){
+
+                semesterFees[
+                    "semester" + i
+                ] = {
+
+                    amount:
+                        getNumber(
+                            "semester" +
+                            i +
+                            "Amount"
+                        ),
+
+                    upiTransactionId:
+                        document.getElementById(
+                            "semester" +
+                            i +
+                            "Upi"
+                        ).value.trim(),
+
+                    status:
+                        document.getElementById(
+                            "semester" +
+                            i +
+                            "Status"
+                        ).value
+
+                };
+
+            }
+
+
+            const applicationRef =
+                doc(
+                    db,
+                    "admissions",
+                    applicationId
+                );
+
+
+            await updateDoc(
+                applicationRef,
+                {
+
+                    applicationFee:
+                        applicationFee,
+
+                    semesterFees:
+                        semesterFees,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            calculateTotals();
+
+
+            showSuccess(
+                "Fee details saved successfully."
+            );
+
+
+        }
+        catch(error){
+
+            console.error(
+                "SAVE FEE ERROR:",
+                error
+            );
+
+
+            showError(
+                "Unable to save fee details: " +
+                error.message
+            );
+
+        }
+        finally{
+
+            saveFeeBtn.disabled =
+                false;
+
+            saveFeeBtn.textContent =
+                "Save Fee Details";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 loadApplicant();
+
 
 </script>
 
 </body>
 </html>
+

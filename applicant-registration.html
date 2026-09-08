@@ -1210,7 +1210,7 @@ footer{
 </div>
 
 
-<!-- ================= FIREBASE ================= -->
+<!-- ================= FIREBASE + SUPABASE ================= -->
 
 <script type="module">
 
@@ -1226,16 +1226,11 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE CONFIG - FIRESTORE ONLY
 ========================================================= */
 
 const firebaseConfig = {
@@ -1259,7 +1254,29 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const storage = getStorage(app);
+/* =========================================================
+   SUPABASE STORAGE CONFIG
+   Bucket: admissions
+
+   IMPORTANT:
+   - Use ONLY the Supabase Publishable/Anon key here.
+   - NEVER put the Supabase service_role key in this HTML file.
+   - Because the bucket is PRIVATE, we save the storage path in
+     Firestore. Admin pages can later create signed URLs.
+========================================================= */
+
+import {
+    createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
+const SUPABASE_BUCKET = "admissions";
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
 
 /* =========================================================
@@ -1536,6 +1553,17 @@ async function uploadDocument(
         return null;
     }
 
+    if(
+        !SUPABASE_URL ||
+        SUPABASE_URL.includes("YOUR_SUPABASE") ||
+        !SUPABASE_ANON_KEY ||
+        SUPABASE_ANON_KEY.includes("YOUR_SUPABASE")
+    ){
+        throw new Error(
+            "Supabase configuration is missing. Please enter your Supabase Project URL and Publishable/Anon Key."
+        );
+    }
+
     const fileExtension =
         file.name.includes(".")
             ? file.name
@@ -1544,27 +1572,55 @@ async function uploadDocument(
                 .toLowerCase()
             : "file";
 
+    /* Keep the original file extension and create a unique name. */
     const safeName =
         folder +
         "-" +
         Date.now() +
+        "-" +
+        Math.random().toString(36).slice(2,8) +
         "." +
         fileExtension;
 
-    const storageRef =
-        ref(
-            storage,
-            `admissions/${applicationNo}/${folder}/${safeName}`
+    /*
+       Supabase Storage path:
+       admissions bucket
+       └── APP-2026-000001
+           └── photo / marksheets / transfer-certificate / other
+    */
+    const storagePath =
+        `${applicationNo}/${folder}/${safeName}`;
+
+    const { error } = await supabase.storage
+        .from(SUPABASE_BUCKET)
+        .upload(
+            storagePath,
+            file,
+            {
+                cacheControl: "3600",
+                upsert: false,
+                contentType: file.type || "application/octet-stream"
+            }
         );
 
-    await uploadBytes(
-        storageRef,
-        file
-    );
+    if(error){
+        console.error(
+            "SUPABASE STORAGE UPLOAD ERROR:",
+            error
+        );
 
-    return await getDownloadURL(
-        storageRef
-    );
+        throw new Error(
+            "Supabase Storage upload failed: " +
+            error.message
+        );
+    }
+
+    /*
+       The bucket is PRIVATE, so do NOT generate a public URL.
+       Save the path in Firestore. Admin/review pages can later
+       use createSignedUrl() to display/download the document.
+    */
+    return storagePath;
 
 }
 
@@ -1925,13 +1981,26 @@ form.addEventListener(
                 photoURL:
                     photoURL,
 
+                /* Supabase private Storage path */
+                photoStoragePath:
+                    photoURL,
+
                 marksheetURL:
+                    marksheetURL,
+
+                marksheetStoragePath:
                     marksheetURL,
 
                 transferCertificateURL:
                     transferCertificateURL,
 
+                transferCertificateStoragePath:
+                    transferCertificateURL,
+
                 otherDocumentURL:
+                    otherDocumentURL,
+
+                otherDocumentStoragePath:
                     otherDocumentURL,
 
                 applicationStatus:

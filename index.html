@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAASC | College Admission</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#f5f7fb;
+    color:#1f2937;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:72px;
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    position:relative;
+    z-index:10;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-box{
+    width:42px;
+    height:42px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        #1d4ed8,
+        #3730a3
+    );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+    font-size:17px;
+}
+
+.logo-text h2{
+    font-size:18px;
+    color:#111827;
+}
+
+.logo-text p{
+    font-size:10px;
+    color:#6b7280;
+    margin-top:2px;
+}
+
+.admin-btn{
+    text-decoration:none;
+
+    padding:10px 17px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:8px;
+
+    color:#1d4ed8;
+
+    font-size:12px;
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.admin-btn:hover{
+    background:#eff6ff;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:calc(100vh - 72px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:50px 20px;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    top:-250px;
+    right:-180px;
+
+    opacity:.6;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    bottom:-220px;
+    left:-180px;
+
+    opacity:.6;
+}
+
+.hero-content{
+    width:100%;
+    max-width:1100px;
+
+    text-align:center;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.badge{
+    display:inline-block;
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    border:1px solid #dbeafe;
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:42px;
+
+    color:#111827;
+
+    line-height:1.15;
+
+    margin-bottom:14px;
+}
+
+.hero h1 span{
+    color:#2563eb;
+}
+
+.hero-description{
+    max-width:650px;
+
+    margin:0 auto;
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:42px;
+}
+
+
+/* =========================
+   ADMISSION CARDS
+========================= */
+
+.admission-options{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(260px, 360px));
+
+    justify-content:center;
+
+    gap:22px;
+
+    margin-bottom:35px;
+}
+
+.admission-card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    padding:28px 25px;
+
+    text-align:left;
+
+    text-decoration:none;
+
+    color:#1f2937;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.04);
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.admission-card::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:4px;
+
+    background:#2563eb;
+}
+
+.admission-card.pg::before{
+    background:#7c3aed;
+}
+
+.admission-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.09);
+
+    border-color:#bfdbfe;
+}
+
+.card-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.card-icon{
+    width:52px;
+    height:52px;
+
+    border-radius:13px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+}
+
+.pg .card-icon{
+    background:#ede9fe;
+    color:#7c3aed;
+}
+
+.arrow{
+    font-size:22px;
+    color:#9ca3af;
+
+    transition:.2s;
+}
+
+.admission-card:hover .arrow{
+    color:#2563eb;
+    transform:translateX(4px);
+}
+
+.admission-card.pg:hover .arrow{
+    color:#7c3aed;
+}
+
+.admission-card h2{
+    font-size:21px;
+
+    margin-bottom:7px;
+}
+
+.admission-card p{
+    color:#6b7280;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    margin-bottom:16px;
+}
+
+.course-count{
+    font-size:11px;
+
+    color:#9ca3af;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    display:flex;
+
+    justify-content:center;
+
+    gap:35px;
+
+    flex-wrap:wrap;
+
+    margin-top:10px;
+}
+
+.feature{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#6b7280;
+
+    font-size:11px;
+}
+
+.feature-icon{
+    color:#16a34a;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    position:absolute;
+
+    bottom:20px;
+
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    font-size:10px;
+
+    z-index:3;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo-text h2{
+        font-size:16px;
+    }
+
+    .hero{
+        padding:
+            45px 18px 75px;
+    }
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .hero-description{
+        font-size:13px;
+
+        margin-bottom:30px;
+    }
+
+    .admission-options{
+        grid-template-columns:1fr;
+
+        max-width:380px;
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .features{
+        gap:15px;
+
+        flex-direction:column;
+    }
+
+    .footer{
+        position:relative;
+
+        margin-top:25px;
+        bottom:auto;
+    }
+
+}
+
+@media(max-width:400px){
+
+    .admin-btn{
+        padding:8px 10px;
+        font-size:10px;
+    }
+
+    .logo-box{
+        width:36px;
+        height:36px;
+        font-size:14px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            M
+        </div>
+
+        <div class="logo-text">
+
+            <h2>MAASC</h2>
+
+            <p>
+                College Admission Portal
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="admission-dashboard.html"
+        class="admin-btn"
+    >
+        Admin Login
+    </a>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="badge">
+            ADMISSION 2026–2027
+        </div>
+
+
+        <h1>
+            College <span>Admission Portal</span>
+        </h1>
+
+
+        <p class="hero-description">
+
+            Welcome to the official admission portal.
+            Apply for Undergraduate and Postgraduate
+            programmes through our secure online
+            admission system.
+
+        </p>
+
+
+        <!-- =========================
+             ADMISSION OPTIONS
+        ========================= -->
+
+        <div class="admission-options">
+
+
+            <!-- UG -->
+
+            <a
+                href="applicant-registration.html?type=UG"
+                class="admission-card"
+            >
+
+                <div class="card-top">
+
+                    <div class="card-icon">
+                        🎓
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <h2>
+                    UG Admission
+                </h2>
+
+
+                <p>
+
+                    Apply for Undergraduate
+                    programmes including B.Com,
+                    B.A, B.Sc and BCA.
+
+                </p>
+
+
+                <div class="course-count">
+                    24 Undergraduate Programmes
+                </div>
+
+            </a>
+
+
+            <!-- PG -->
+
+            <a
+                href="applicant-registration.html?type=PG"
+                class="admission-card pg"
+            >
+
+                <div class="card-top">
+
+                    <div class="card-icon">
+                        🎓
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <h2>
+                    PG Admission
+                </h2>
+
+
+                <p>
+
+                    Apply for Postgraduate
+                    programmes including M.Sc CS
+                    and M.Com A&F.
+
+                </p>
+
+
+                <div class="course-count">
+                    2 Postgraduate Programmes
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- =========================
+             FEATURES
+        ========================= -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Online Application
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Document Upload
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Application Tracking
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    ✓
+                </span>
+
+                Secure Admission
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+
+            © 2026 MAASC College · Admission Management System
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+</body>
+
+</html>
+

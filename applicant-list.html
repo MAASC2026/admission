@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,8 @@ body{
     color:#1f2937;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 .header{
     background:linear-gradient(135deg,#123c69,#1d5d91);
     color:white;
@@ -68,7 +70,12 @@ body{
     border-radius:8px;
 }
 
-/* MAIN */
+.back-btn:hover{
+    background:rgba(255,255,255,.1);
+}
+
+/* ================= MAIN ================= */
+
 .container{
     max-width:1400px;
     margin:30px auto;
@@ -89,7 +96,8 @@ body{
     color:#6b7280;
 }
 
-/* STATS */
+/* ================= STATS ================= */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -116,7 +124,8 @@ body{
     color:#123c69;
 }
 
-/* FILTER CARD */
+/* ================= FILTER ================= */
+
 .filter-card{
     background:white;
     border-radius:14px;
@@ -157,6 +166,7 @@ select{
 input:focus,
 select:focus{
     border-color:#1d5d91;
+    box-shadow:0 0 0 2px rgba(29,93,145,.08);
 }
 
 .refresh-btn{
@@ -167,13 +177,20 @@ select:focus{
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .refresh-btn:hover{
     background:#0e3156;
 }
 
-/* TABLE */
+.refresh-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* ================= TABLE ================= */
+
 .table-card{
     background:white;
     border-radius:14px;
@@ -234,7 +251,8 @@ tbody tr:hover{
     background:#f8fbff;
 }
 
-/* STATUS */
+/* ================= STATUS ================= */
+
 .status{
     display:inline-block;
     padding:6px 10px;
@@ -274,7 +292,8 @@ tbody tr:hover{
     color:#374151;
 }
 
-/* TYPE */
+/* ================= TYPE ================= */
+
 .type-badge{
     display:inline-block;
     padding:5px 9px;
@@ -293,7 +312,8 @@ tbody tr:hover{
     color:#5b21b6;
 }
 
-/* VIEW */
+/* ================= VIEW ================= */
+
 .view-btn{
     border:none;
     background:#123c69;
@@ -308,10 +328,11 @@ tbody tr:hover{
     background:#1d5d91;
 }
 
-/* EMPTY */
+/* ================= EMPTY ================= */
+
 .empty{
     text-align:center;
-    padding:60px 20px;
+    padding:60px 20px !important;
     color:#6b7280;
 }
 
@@ -320,10 +341,11 @@ tbody tr:hover{
     margin-bottom:12px;
 }
 
-/* LOADING */
+/* ================= LOADING ================= */
+
 .loading{
     text-align:center;
-    padding:50px;
+    padding:50px !important;
     color:#6b7280;
 }
 
@@ -343,7 +365,8 @@ tbody tr:hover{
     }
 }
 
-/* ERROR */
+/* ================= ERROR ================= */
+
 .error-box{
     display:none;
     background:#fee2e2;
@@ -351,9 +374,11 @@ tbody tr:hover{
     padding:15px;
     border-radius:8px;
     margin-bottom:20px;
+    line-height:1.5;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
     text-align:center;
     padding:25px;
@@ -361,11 +386,12 @@ footer{
     font-size:12px;
 }
 
-/* MOBILE */
-@media(max-width:1000px){
+/* ================= MOBILE ================= */
+
+@media(max-width:1100px){
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(3,1fr);
     }
 
     .filter-grid{
@@ -374,19 +400,30 @@ footer{
 
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
     .header{
         padding:14px;
+        gap:10px;
     }
 
     .college-name{
         font-size:16px;
     }
 
+    .college-subtitle{
+        font-size:10px;
+    }
+
     .logo{
         width:44px;
         height:44px;
+        font-size:12px;
+    }
+
+    .back-btn{
+        padding:8px 11px;
+        font-size:12px;
     }
 
     .container{
@@ -405,11 +442,21 @@ footer{
     .page-title h1{
         font-size:24px;
     }
+
+    .table-header{
+        padding:15px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
@@ -420,6 +467,7 @@ footer{
         </div>
 
         <div>
+
             <div class="college-name">
                 MAASC College
             </div>
@@ -427,16 +475,24 @@ footer{
             <div class="college-subtitle">
                 Admission Management System
             </div>
+
         </div>
 
     </div>
 
-    <a href="admission-dashboard.html" class="back-btn">
+    <a
+        href="admission-dashboard.html"
+        class="back-btn"
+    >
         ← Dashboard
     </a>
 
 </header>
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="container">
 
@@ -453,10 +509,17 @@ footer{
     </div>
 
 
-    <div id="errorBox" class="error-box"></div>
+    <!-- ERROR -->
+
+    <div
+        id="errorBox"
+        class="error-box"
+    ></div>
 
 
-    <!-- STATS -->
+    <!-- =================================================
+         STATS
+    ================================================= -->
 
     <div class="stats">
 
@@ -542,7 +605,9 @@ footer{
     </div>
 
 
-    <!-- FILTERS -->
+    <!-- =================================================
+         FILTERS
+    ================================================= -->
 
     <div class="filter-card">
 
@@ -558,6 +623,7 @@ footer{
                     type="text"
                     id="searchInput"
                     placeholder="Search name, application no, mobile..."
+                    autocomplete="off"
                 >
 
             </div>
@@ -643,6 +709,7 @@ footer{
 
 
             <button
+                type="button"
                 class="refresh-btn"
                 id="refreshBtn"
             >
@@ -654,7 +721,9 @@ footer{
     </div>
 
 
-    <!-- TABLE -->
+    <!-- =================================================
+         APPLICATION TABLE
+    ================================================= -->
 
     <div class="table-card">
 
@@ -682,9 +751,7 @@ footer{
 
                     <tr>
 
-                        <th>
-                            #
-                        </th>
+                        <th>#</th>
 
                         <th>
                             Application No
@@ -726,7 +793,10 @@ footer{
 
                 </thead>
 
-                <tbody id="applicationTableBody">
+
+                <tbody
+                    id="applicationTableBody"
+                >
 
                     <tr>
 
@@ -759,11 +829,11 @@ footer{
 </footer>
 
 
-<script type="module">
+<!-- =====================================================
+     FIREBASE SCRIPT
+===================================================== -->
 
-/* =========================================================
-   FIREBASE
-========================================================= */
+<script type="module">
 
 import {
     initializeApp
@@ -778,22 +848,36 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
 const firebaseConfig = {
 
-    apiKey: "AIzaSyCw5aKRzLKDS9ETD466KGPeuZ7_qOW7oUU",
+    apiKey:
+        "AIzaSyCw5aKRzLKDS9ETD466KGPeuZ7_qOW7oUU",
 
-    authDomain: "maasc-admission.firebaseapp.com",
+    authDomain:
+        "maasc-admission.firebaseapp.com",
 
-    projectId: "maasc-admission",
+    projectId:
+        "maasc-admission",
 
-    storageBucket: "maasc-admission.firebasestorage.app",
+    storageBucket:
+        "maasc-admission.firebasestorage.app",
 
-    messagingSenderId: "391924119351",
+    messagingSenderId:
+        "391924119351",
 
-    appId: "1:391924119351:web:0e55cbe892ef8f589dccb2"
+    appId:
+        "1:391924119351:web:0e55cbe892ef8f589dccb2"
 
 };
 
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -802,9 +886,9 @@ const db =
     getFirestore(app);
 
 
-/* =========================================================
+/* =====================================================
    ELEMENTS
-========================================================= */
+===================================================== */
 
 const tableBody =
     document.getElementById(
@@ -847,18 +931,50 @@ const errorBox =
     );
 
 
-/* =========================================================
+/* =====================================================
    DATA
-========================================================= */
+===================================================== */
 
 let applications = [];
 
 
-/* =========================================================
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message){
+
+    errorBox.textContent =
+        message;
+
+    errorBox.style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   HIDE ERROR
+===================================================== */
+
+function hideError(){
+
+    errorBox.style.display =
+        "none";
+
+}
+
+
+/* =====================================================
    LOAD APPLICATIONS
-========================================================= */
+===================================================== */
 
 async function loadApplications(){
+
+    refreshBtn.disabled = true;
+
+    refreshBtn.textContent =
+        "Loading...";
 
     tableBody.innerHTML = `
 
@@ -879,7 +995,7 @@ async function loadApplications(){
 
     `;
 
-    errorBox.style.display = "none";
+    hideError();
 
 
     try{
@@ -890,7 +1006,13 @@ async function loadApplications(){
                 "admissions"
             );
 
+
         let snapshot;
+
+
+        /*
+         * First try createdAt descending.
+         */
 
         try{
 
@@ -903,15 +1025,18 @@ async function loadApplications(){
                     )
                 );
 
+
             snapshot =
                 await getDocs(q);
+
 
         }catch(orderError){
 
             console.warn(
-                "Order query failed. Loading without order:",
+                "Ordered query failed. Loading without order.",
                 orderError
             );
+
 
             snapshot =
                 await getDocs(
@@ -928,6 +1053,7 @@ async function loadApplications(){
 
             const data =
                 docSnap.data();
+
 
             applications.push({
 
@@ -955,12 +1081,11 @@ async function loadApplications(){
             error
         );
 
-        errorBox.textContent =
-            "Unable to load applications. " +
-            error.message;
 
-        errorBox.style.display =
-            "block";
+        showError(
+            "Unable to load applications. " +
+            error.message
+        );
 
 
         tableBody.innerHTML = `
@@ -984,14 +1109,22 @@ async function loadApplications(){
 
         `;
 
+    }finally{
+
+        refreshBtn.disabled =
+            false;
+
+        refreshBtn.textContent =
+            "↻ Refresh";
+
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    COURSE FILTER
-========================================================= */
+===================================================== */
 
 function populateCourseFilter(){
 
@@ -1006,13 +1139,20 @@ function populateCourseFilter(){
             app.department ||
             "";
 
+
         if(course){
 
-            courses.add(course);
+            courses.add(
+                String(course)
+            );
 
         }
 
     });
+
+
+    const currentValue =
+        courseFilter.value;
 
 
     courseFilter.innerHTML = `
@@ -1025,7 +1165,12 @@ function populateCourseFilter(){
 
 
     [...courses]
-        .sort()
+        .sort(
+            (a,b) =>
+                a.localeCompare(
+                    b
+                )
+        )
         .forEach(course => {
 
             const option =
@@ -1033,11 +1178,14 @@ function populateCourseFilter(){
                     "option"
                 );
 
+
             option.value =
                 course;
 
+
             option.textContent =
                 course;
+
 
             courseFilter.appendChild(
                 option
@@ -1045,27 +1193,50 @@ function populateCourseFilter(){
 
         });
 
+
+    /*
+     * Restore previous selection
+     * if it still exists.
+     */
+
+    const exists =
+        [...courseFilter.options]
+            .some(
+                option =>
+                    option.value ===
+                    currentValue
+            );
+
+
+    if(exists){
+
+        courseFilter.value =
+            currentValue;
+
+    }
+
 }
 
 
-/* =========================================================
-   STATUS
-========================================================= */
+/* =====================================================
+   GET STATUS
+===================================================== */
 
 function getStatus(app){
 
-    return (
+    return String(
         app.applicationStatus ||
+        app.status ||
         app.admissionStatus ||
         "Pending Verification"
-    );
+    ).trim();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    NORMALIZE STATUS
-========================================================= */
+===================================================== */
 
 function normalizeStatus(status){
 
@@ -1076,35 +1247,7 @@ function normalizeStatus(status){
 
 
     if(
-        value.includes("pending") ||
-        value.includes("verification")
-    ){
-
-        return "pending";
-
-    }
-
-
-    if(
-        value.includes("verified")
-    ){
-
-        return "verified";
-
-    }
-
-
-    if(
-        value.includes("selected")
-    ){
-
-        return "selected";
-
-    }
-
-
-    if(
-        value.includes("rejected")
+        value.includes("reject")
     ){
 
         return "rejected";
@@ -1113,11 +1256,37 @@ function normalizeStatus(status){
 
 
     if(
-        value.includes("confirmed") ||
-        value.includes("admission confirmed")
+        value.includes("confirm")
     ){
 
         return "confirmed";
+
+    }
+
+
+    if(
+        value.includes("select")
+    ){
+
+        return "selected";
+
+    }
+
+
+    if(
+        value.includes("verif")
+    ){
+
+        return "verified";
+
+    }
+
+
+    if(
+        value.includes("pending")
+    ){
+
+        return "pending";
 
     }
 
@@ -1127,9 +1296,9 @@ function normalizeStatus(status){
 }
 
 
-/* =========================================================
+/* =====================================================
    UPDATE STATS
-========================================================= */
+===================================================== */
 
 function updateStats(){
 
@@ -1141,8 +1310,12 @@ function updateStats(){
         applications.filter(
             app =>
                 String(
-                    app.admissionType || ""
-                ).toUpperCase() === "UG"
+                    app.admissionType ||
+                    ""
+                )
+                .trim()
+                .toUpperCase()
+                === "UG"
         ).length;
 
 
@@ -1150,8 +1323,12 @@ function updateStats(){
         applications.filter(
             app =>
                 String(
-                    app.admissionType || ""
-                ).toUpperCase() === "PG"
+                    app.admissionType ||
+                    ""
+                )
+                .trim()
+                .toUpperCase()
+                === "PG"
         ).length;
 
 
@@ -1160,7 +1337,8 @@ function updateStats(){
             app =>
                 normalizeStatus(
                     getStatus(app)
-                ) === "pending"
+                )
+                === "pending"
         ).length;
 
 
@@ -1169,12 +1347,8 @@ function updateStats(){
             app =>
                 normalizeStatus(
                     getStatus(app)
-                ) === "confirmed"
-                ||
-                String(
-                    app.admissionStatus || ""
-                ).toLowerCase()
-                .includes("confirmed")
+                )
+                === "confirmed"
         ).length;
 
 
@@ -1210,15 +1384,14 @@ function updateStats(){
 }
 
 
-/* =========================================================
-   FILTER APPLICATIONS
-========================================================= */
+/* =====================================================
+   GET FILTERED APPLICATIONS
+===================================================== */
 
 function getFilteredApplications(){
 
     const search =
-        searchInput
-            .value
+        searchInput.value
             .trim()
             .toLowerCase();
 
@@ -1238,7 +1411,7 @@ function getFilteredApplications(){
     return applications.filter(app => {
 
 
-        /* SEARCH */
+        /* ================= SEARCH ================= */
 
         if(search){
 
@@ -1257,13 +1430,19 @@ function getFilteredApplications(){
                 app.department
 
             ]
-            .filter(Boolean)
+            .filter(
+                value =>
+                    value !== undefined &&
+                    value !== null
+            )
             .join(" ")
             .toLowerCase();
 
 
             if(
-                !searchable.includes(search)
+                !searchable.includes(
+                    search
+                )
             ){
 
                 return false;
@@ -1273,17 +1452,23 @@ function getFilteredApplications(){
         }
 
 
-        /* TYPE */
+        /* ================= TYPE ================= */
 
         if(
             selectedType !== "ALL"
         ){
 
-            if(
+            const type =
                 String(
-                    app.admissionType || ""
-                ).toUpperCase()
-                !==
+                    app.admissionType ||
+                    ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if(
+                type !==
                 selectedType
             ){
 
@@ -1294,19 +1479,23 @@ function getFilteredApplications(){
         }
 
 
-        /* COURSE */
+        /* ================= COURSE ================= */
 
         if(
             selectedCourse !== "ALL"
         ){
 
             const course =
-                app.course ||
-                app.department ||
-                "";
+                String(
+                    app.course ||
+                    app.department ||
+                    ""
+                );
+
 
             if(
-                course !== selectedCourse
+                course !==
+                selectedCourse
             ){
 
                 return false;
@@ -1316,7 +1505,7 @@ function getFilteredApplications(){
         }
 
 
-        /* STATUS */
+        /* ================= STATUS ================= */
 
         if(
             selectedStatus !== "ALL"
@@ -1327,8 +1516,7 @@ function getFilteredApplications(){
 
 
             if(
-                status.toLowerCase()
-                !==
+                status.toLowerCase() !==
                 selectedStatus.toLowerCase()
             ){
 
@@ -1346,9 +1534,9 @@ function getFilteredApplications(){
 }
 
 
-/* =========================================================
+/* =====================================================
    FORMAT DATE
-========================================================= */
+===================================================== */
 
 function formatDate(value){
 
@@ -1364,6 +1552,10 @@ function formatDate(value){
         let date;
 
 
+        /*
+         * Firestore Timestamp
+         */
+
         if(
             typeof value === "object" &&
             typeof value.toDate === "function"
@@ -1372,7 +1564,29 @@ function formatDate(value){
             date =
                 value.toDate();
 
-        }else{
+        }
+
+
+        /*
+         * Firestore timestamp object
+         */
+
+        else if(
+            typeof value === "object" &&
+            value.seconds !== undefined
+        ){
+
+            date =
+                new Date(
+                    Number(
+                        value.seconds
+                    ) * 1000
+                );
+
+        }
+
+
+        else{
 
             date =
                 new Date(value);
@@ -1381,7 +1595,9 @@ function formatDate(value){
 
 
         if(
-            isNaN(date.getTime())
+            isNaN(
+                date.getTime()
+            )
         ){
 
             return "-";
@@ -1398,7 +1614,13 @@ function formatDate(value){
             }
         );
 
+
     }catch(error){
+
+        console.warn(
+            "DATE FORMAT ERROR:",
+            error
+        );
 
         return "-";
 
@@ -1407,9 +1629,9 @@ function formatDate(value){
 }
 
 
-/* =========================================================
-   RENDER TABLE
-========================================================= */
+/* =====================================================
+   RENDER APPLICATIONS
+===================================================== */
 
 function renderApplications(){
 
@@ -1419,11 +1641,15 @@ function renderApplications(){
 
     resultCount.textContent =
         `${filtered.length} application${
-            filtered.length === 1 ? "" : "s"
+            filtered.length === 1
+                ? ""
+                : "s"
         }`;
 
 
-    if(filtered.length === 0){
+    if(
+        filtered.length === 0
+    ){
 
         tableBody.innerHTML = `
 
@@ -1451,20 +1677,27 @@ function renderApplications(){
     }
 
 
-    tableBody.innerHTML = "";
+    tableBody.innerHTML =
+        "";
 
 
     filtered.forEach(
         (app,index) => {
 
+
             const row =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             const type =
                 String(
-                    app.admissionType || "UG"
-                ).toUpperCase();
+                    app.admissionType ||
+                    "UG"
+                )
+                .trim()
+                .toUpperCase();
 
 
             const typeClass =
@@ -1479,7 +1712,9 @@ function renderApplications(){
 
             const statusClass =
                 "status-" +
-                normalizeStatus(status);
+                normalizeStatus(
+                    status
+                );
 
 
             const applicationNo =
@@ -1521,6 +1756,7 @@ function renderApplications(){
                     ${index + 1}
                 </td>
 
+
                 <td>
                     <strong>
                         ${escapeHtml(
@@ -1528,6 +1764,7 @@ function renderApplications(){
                         )}
                     </strong>
                 </td>
+
 
                 <td>
 
@@ -1539,23 +1776,30 @@ function renderApplications(){
 
                 </td>
 
+
                 <td>
+
                     <strong>
                         ${escapeHtml(name)}
                     </strong>
+
                 </td>
+
 
                 <td>
                     ${escapeHtml(course)}
                 </td>
 
+
                 <td>
                     ${escapeHtml(mobile)}
                 </td>
 
+
                 <td>
                     ${escapeHtml(year)}
                 </td>
+
 
                 <td>
 
@@ -1567,13 +1811,16 @@ function renderApplications(){
 
                 </td>
 
+
                 <td>
                     ${date}
                 </td>
 
+
                 <td>
 
                     <button
+                        type="button"
                         class="view-btn"
                         data-id="${escapeAttribute(
                             app.id
@@ -1587,14 +1834,22 @@ function renderApplications(){
             `;
 
 
-            tableBody.appendChild(row);
+            tableBody.appendChild(
+                row
+            );
 
         }
     );
 
 
+    /*
+     * View buttons
+     */
+
     document
-        .querySelectorAll(".view-btn")
+        .querySelectorAll(
+            ".view-btn"
+        )
         .forEach(button => {
 
             button.addEventListener(
@@ -1604,9 +1859,23 @@ function renderApplications(){
                     const id =
                         this.dataset.id;
 
+
+                    if(!id){
+
+                        showError(
+                            "Applicant document ID is missing."
+                        );
+
+                        return;
+
+                    }
+
+
                     window.location.href =
                         "applicant-view.html?id=" +
-                        encodeURIComponent(id);
+                        encodeURIComponent(
+                            id
+                        );
 
                 }
             );
@@ -1616,37 +1885,55 @@ function renderApplications(){
 }
 
 
-/* =========================================================
+/* =====================================================
    HTML ESCAPE
-========================================================= */
+===================================================== */
 
 function escapeHtml(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
+
+/* =====================================================
+   ATTRIBUTE ESCAPE
+===================================================== */
 
 function escapeAttribute(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;");
+    return escapeHtml(
+        value
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    FILTER EVENTS
-========================================================= */
+===================================================== */
 
 searchInput.addEventListener(
     "input",
@@ -1672,9 +1959,9 @@ statusFilter.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    REFRESH
-========================================================= */
+===================================================== */
 
 refreshBtn.addEventListener(
     "click",
@@ -1682,9 +1969,9 @@ refreshBtn.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    INITIAL LOAD
-========================================================= */
+===================================================== */
 
 loadApplications();
 
@@ -1692,3 +1979,4 @@ loadApplications();
 
 </body>
 </html>
+```

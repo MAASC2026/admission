@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Applicant List | MAASC Admission</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f3f6fb;
+    color:#1f2937;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#123c69,#1d5d91);
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:white;
+    color:#123c69;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.college-name{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.college-subtitle{
+    font-size:12px;
+    opacity:.85;
+    margin-top:4px;
+}
+
+.back-btn{
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:8px;
+}
+
+/* MAIN */
+.container{
+    max-width:1400px;
+    margin:30px auto;
+    padding:0 20px;
+}
+
+.page-title{
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    color:#123c69;
+    font-size:30px;
+    margin-bottom:7px;
+}
+
+.page-title p{
+    color:#6b7280;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.stat-title{
+    color:#6b7280;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.stat-value{
+    font-size:27px;
+    font-weight:bold;
+    color:#123c69;
+}
+
+/* FILTER CARD */
+.filter-card{
+    background:white;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.filter-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr auto;
+    gap:12px;
+    align-items:end;
+}
+
+.filter-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.filter-group label{
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#374151;
+}
+
+input,
+select{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    outline:none;
+    background:white;
+}
+
+input:focus,
+select:focus{
+    border-color:#1d5d91;
+}
+
+.refresh-btn{
+    padding:11px 18px;
+    border:none;
+    background:#123c69;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.refresh-btn:hover{
+    background:#0e3156;
+}
+
+/* TABLE */
+.table-card{
+    background:white;
+    border-radius:14px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+    overflow:hidden;
+}
+
+.table-header{
+    padding:18px 22px;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.table-header h2{
+    color:#123c69;
+    font-size:18px;
+}
+
+.result-count{
+    font-size:13px;
+    color:#6b7280;
+}
+
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+thead{
+    background:#f8fafc;
+}
+
+th{
+    text-align:left;
+    padding:14px 15px;
+    font-size:12px;
+    color:#475569;
+    border-bottom:1px solid #e5e7eb;
+    white-space:nowrap;
+}
+
+td{
+    padding:14px 15px;
+    font-size:13px;
+    border-bottom:1px solid #eef2f7;
+    vertical-align:middle;
+}
+
+tbody tr:hover{
+    background:#f8fbff;
+}
+
+/* STATUS */
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.status-pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.status-verified{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.status-selected{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status-rejected{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.status-confirmed{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.status-default{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+/* TYPE */
+.type-badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.type-ug{
+    background:#e0f2fe;
+    color:#075985;
+}
+
+.type-pg{
+    background:#ede9fe;
+    color:#5b21b6;
+}
+
+/* VIEW */
+.view-btn{
+    border:none;
+    background:#123c69;
+    color:white;
+    padding:7px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.view-btn:hover{
+    background:#1d5d91;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    color:#6b7280;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+/* LOADING */
+.loading{
+    text-align:center;
+    padding:50px;
+    color:#6b7280;
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    border:4px solid #e5e7eb;
+    border-top-color:#123c69;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ERROR */
+.error-box{
+    display:none;
+    background:#fee2e2;
+    color:#991b1b;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:25px;
+    color:#6b7280;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .filter-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .header{
+        padding:14px;
+    }
+
+    .college-name{
+        font-size:16px;
+    }
+
+    .logo{
+        width:44px;
+        height:44px;
+    }
+
+    .container{
+        padding:0 12px;
+        margin-top:20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .filter-grid{
+        grid-template-columns:1fr;
+    }
+
+    .page-title h1{
+        font-size:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            MAASC
+        </div>
+
+        <div>
+            <div class="college-name">
+                MAASC College
+            </div>
+
+            <div class="college-subtitle">
+                Admission Management System
+            </div>
+        </div>
+
+    </div>
+
+    <a href="admission-dashboard.html" class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="page-title">
+
+        <h1>
+            Applicant Applications
+        </h1>
+
+        <p>
+            View and manage all admission applications
+        </p>
+
+    </div>
+
+
+    <div id="errorBox" class="error-box"></div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                Total Applications
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                UG Applications
+            </div>
+
+            <div
+                class="stat-value"
+                id="ugCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                PG Applications
+            </div>
+
+            <div
+                class="stat-value"
+                id="pgCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                Pending Verification
+            </div>
+
+            <div
+                class="stat-value"
+                id="pendingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                Confirmed Admissions
+            </div>
+
+            <div
+                class="stat-value"
+                id="confirmedCount"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <div class="filter-card">
+
+        <div class="filter-grid">
+
+            <div class="filter-group">
+
+                <label>
+                    Search Applicant
+                </label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search name, application no, mobile..."
+                >
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Admission Type
+                </label>
+
+                <select id="typeFilter">
+
+                    <option value="ALL">
+                        All
+                    </option>
+
+                    <option value="UG">
+                        UG
+                    </option>
+
+                    <option value="PG">
+                        PG
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Course
+                </label>
+
+                <select id="courseFilter">
+
+                    <option value="ALL">
+                        All Courses
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="statusFilter">
+
+                    <option value="ALL">
+                        All Status
+                    </option>
+
+                    <option value="Pending Verification">
+                        Pending Verification
+                    </option>
+
+                    <option value="Verified">
+                        Verified
+                    </option>
+
+                    <option value="Selected">
+                        Selected
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                    <option value="Confirmed">
+                        Confirmed
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="refresh-btn"
+                id="refreshBtn"
+            >
+                ↻ Refresh
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>
+                Applications
+            </h2>
+
+            <div
+                class="result-count"
+                id="resultCount"
+            >
+                0 applications
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            Application No
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Applicant Name
+                        </th>
+
+                        <th>
+                            Course
+                        </th>
+
+                        <th>
+                            Mobile
+                        </th>
+
+                        <th>
+                            Year
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Applied Date
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="applicationTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="loading"
+                        >
+
+                            <div class="spinner"></div>
+
+                            Loading applications...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 MAASC College · Admission Management System
+</footer>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyCw5aKRzLKDS9ETD466KGPeuZ7_qOW7oUU",
+
+    authDomain: "maasc-admission.firebaseapp.com",
+
+    projectId: "maasc-admission",
+
+    storageBucket: "maasc-admission.firebasestorage.app",
+
+    messagingSenderId: "391924119351",
+
+    appId: "1:391924119351:web:0e55cbe892ef8f589dccb2"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const tableBody =
+    document.getElementById(
+        "applicationTableBody"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const typeFilter =
+    document.getElementById(
+        "typeFilter"
+    );
+
+const courseFilter =
+    document.getElementById(
+        "courseFilter"
+    );
+
+const statusFilter =
+    document.getElementById(
+        "statusFilter"
+    );
+
+const refreshBtn =
+    document.getElementById(
+        "refreshBtn"
+    );
+
+const resultCount =
+    document.getElementById(
+        "resultCount"
+    );
+
+const errorBox =
+    document.getElementById(
+        "errorBox"
+    );
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let applications = [];
+
+
+/* =========================================================
+   LOAD APPLICATIONS
+========================================================= */
+
+async function loadApplications(){
+
+    tableBody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="10"
+                class="loading"
+            >
+
+                <div class="spinner"></div>
+
+                Loading applications...
+
+            </td>
+
+        </tr>
+
+    `;
+
+    errorBox.style.display = "none";
+
+
+    try{
+
+        const admissionsRef =
+            collection(
+                db,
+                "admissions"
+            );
+
+        let snapshot;
+
+        try{
+
+            const q =
+                query(
+                    admissionsRef,
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    )
+                );
+
+            snapshot =
+                await getDocs(q);
+
+        }catch(orderError){
+
+            console.warn(
+                "Order query failed. Loading without order:",
+                orderError
+            );
+
+            snapshot =
+                await getDocs(
+                    admissionsRef
+                );
+
+        }
+
+
+        applications = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            const data =
+                docSnap.data();
+
+            applications.push({
+
+                id:
+                    docSnap.id,
+
+                ...data
+
+            });
+
+        });
+
+
+        populateCourseFilter();
+
+        updateStats();
+
+        renderApplications();
+
+
+    }catch(error){
+
+        console.error(
+            "LOAD APPLICATIONS ERROR:",
+            error
+        );
+
+        errorBox.textContent =
+            "Unable to load applications. " +
+            error.message;
+
+        errorBox.style.display =
+            "block";
+
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    class="empty"
+                >
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    Failed to load applications.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   COURSE FILTER
+========================================================= */
+
+function populateCourseFilter(){
+
+    const courses =
+        new Set();
+
+
+    applications.forEach(app => {
+
+        const course =
+            app.course ||
+            app.department ||
+            "";
+
+        if(course){
+
+            courses.add(course);
+
+        }
+
+    });
+
+
+    courseFilter.innerHTML = `
+
+        <option value="ALL">
+            All Courses
+        </option>
+
+    `;
+
+
+    [...courses]
+        .sort()
+        .forEach(course => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                course;
+
+            option.textContent =
+                course;
+
+            courseFilter.appendChild(
+                option
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function getStatus(app){
+
+    return (
+        app.applicationStatus ||
+        app.admissionStatus ||
+        "Pending Verification"
+    );
+
+}
+
+
+/* =========================================================
+   NORMALIZE STATUS
+========================================================= */
+
+function normalizeStatus(status){
+
+    const value =
+        String(status || "")
+            .trim()
+            .toLowerCase();
+
+
+    if(
+        value.includes("pending") ||
+        value.includes("verification")
+    ){
+
+        return "pending";
+
+    }
+
+
+    if(
+        value.includes("verified")
+    ){
+
+        return "verified";
+
+    }
+
+
+    if(
+        value.includes("selected")
+    ){
+
+        return "selected";
+
+    }
+
+
+    if(
+        value.includes("rejected")
+    ){
+
+        return "rejected";
+
+    }
+
+
+    if(
+        value.includes("confirmed") ||
+        value.includes("admission confirmed")
+    ){
+
+        return "confirmed";
+
+    }
+
+
+    return "default";
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+    const total =
+        applications.length;
+
+
+    const ug =
+        applications.filter(
+            app =>
+                String(
+                    app.admissionType || ""
+                ).toUpperCase() === "UG"
+        ).length;
+
+
+    const pg =
+        applications.filter(
+            app =>
+                String(
+                    app.admissionType || ""
+                ).toUpperCase() === "PG"
+        ).length;
+
+
+    const pending =
+        applications.filter(
+            app =>
+                normalizeStatus(
+                    getStatus(app)
+                ) === "pending"
+        ).length;
+
+
+    const confirmed =
+        applications.filter(
+            app =>
+                normalizeStatus(
+                    getStatus(app)
+                ) === "confirmed"
+                ||
+                String(
+                    app.admissionStatus || ""
+                ).toLowerCase()
+                .includes("confirmed")
+        ).length;
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "ugCount"
+    ).textContent =
+        ug;
+
+
+    document.getElementById(
+        "pgCount"
+    ).textContent =
+        pg;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "confirmedCount"
+    ).textContent =
+        confirmed;
+
+}
+
+
+/* =========================================================
+   FILTER APPLICATIONS
+========================================================= */
+
+function getFilteredApplications(){
+
+    const search =
+        searchInput
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const selectedType =
+        typeFilter.value;
+
+
+    const selectedCourse =
+        courseFilter.value;
+
+
+    const selectedStatus =
+        statusFilter.value;
+
+
+    return applications.filter(app => {
+
+
+        /* SEARCH */
+
+        if(search){
+
+            const searchable = [
+
+                app.applicationNo,
+
+                app.applicantName,
+
+                app.mobile,
+
+                app.email,
+
+                app.course,
+
+                app.department
+
+            ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+
+            if(
+                !searchable.includes(search)
+            ){
+
+                return false;
+
+            }
+
+        }
+
+
+        /* TYPE */
+
+        if(
+            selectedType !== "ALL"
+        ){
+
+            if(
+                String(
+                    app.admissionType || ""
+                ).toUpperCase()
+                !==
+                selectedType
+            ){
+
+                return false;
+
+            }
+
+        }
+
+
+        /* COURSE */
+
+        if(
+            selectedCourse !== "ALL"
+        ){
+
+            const course =
+                app.course ||
+                app.department ||
+                "";
+
+            if(
+                course !== selectedCourse
+            ){
+
+                return false;
+
+            }
+
+        }
+
+
+        /* STATUS */
+
+        if(
+            selectedStatus !== "ALL"
+        ){
+
+            const status =
+                getStatus(app);
+
+
+            if(
+                status.toLowerCase()
+                !==
+                selectedStatus.toLowerCase()
+            ){
+
+                return false;
+
+            }
+
+        }
+
+
+        return true;
+
+    });
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    try{
+
+        let date;
+
+
+        if(
+            typeof value === "object" &&
+            typeof value.toDate === "function"
+        ){
+
+            date =
+                value.toDate();
+
+        }else{
+
+            date =
+                new Date(value);
+
+        }
+
+
+        if(
+            isNaN(date.getTime())
+        ){
+
+            return "-";
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
+
+    }catch(error){
+
+        return "-";
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderApplications(){
+
+    const filtered =
+        getFilteredApplications();
+
+
+    resultCount.textContent =
+        `${filtered.length} application${
+            filtered.length === 1 ? "" : "s"
+        }`;
+
+
+    if(filtered.length === 0){
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    class="empty"
+                >
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    No applications found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    tableBody.innerHTML = "";
+
+
+    filtered.forEach(
+        (app,index) => {
+
+            const row =
+                document.createElement("tr");
+
+
+            const type =
+                String(
+                    app.admissionType || "UG"
+                ).toUpperCase();
+
+
+            const typeClass =
+                type === "PG"
+                    ? "type-pg"
+                    : "type-ug";
+
+
+            const status =
+                getStatus(app);
+
+
+            const statusClass =
+                "status-" +
+                normalizeStatus(status);
+
+
+            const applicationNo =
+                app.applicationNo ||
+                app.id ||
+                "-";
+
+
+            const name =
+                app.applicantName ||
+                "-";
+
+
+            const course =
+                app.course ||
+                app.department ||
+                "-";
+
+
+            const mobile =
+                app.mobile ||
+                "-";
+
+
+            const year =
+                app.year ||
+                "I Year";
+
+
+            const date =
+                formatDate(
+                    app.createdAt
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    <strong>
+                        ${escapeHtml(
+                            applicationNo
+                        )}
+                    </strong>
+                </td>
+
+                <td>
+
+                    <span
+                        class="type-badge ${typeClass}"
+                    >
+                        ${escapeHtml(type)}
+                    </span>
+
+                </td>
+
+                <td>
+                    <strong>
+                        ${escapeHtml(name)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHtml(course)}
+                </td>
+
+                <td>
+                    ${escapeHtml(mobile)}
+                </td>
+
+                <td>
+                    ${escapeHtml(year)}
+                </td>
+
+                <td>
+
+                    <span
+                        class="status ${statusClass}"
+                    >
+                        ${escapeHtml(status)}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${date}
+                </td>
+
+                <td>
+
+                    <button
+                        class="view-btn"
+                        data-id="${escapeAttribute(
+                            app.id
+                        )}"
+                    >
+                        View
+                    </button>
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(row);
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".view-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    const id =
+                        this.dataset.id;
+
+                    window.location.href =
+                        "applicant-view.html?id=" +
+                        encodeURIComponent(id);
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================================================
+   FILTER EVENTS
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    renderApplications
+);
+
+
+typeFilter.addEventListener(
+    "change",
+    renderApplications
+);
+
+
+courseFilter.addEventListener(
+    "change",
+    renderApplications
+);
+
+
+statusFilter.addEventListener(
+    "change",
+    renderApplications
+);
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+refreshBtn.addEventListener(
+    "click",
+    loadApplications
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+loadApplications();
+
+</script>
+
+</body>
+</html>

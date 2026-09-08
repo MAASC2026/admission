@@ -1,6 +1,6 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -279,6 +279,10 @@ body{
     outline:none;
 }
 
+.fee-input:focus{
+    border-color:#123c69;
+}
+
 .fee-select{
     width:100%;
     padding:9px 10px;
@@ -366,6 +370,10 @@ body{
 .btn-secondary{
     background:#e5e7eb;
     color:#374151;
+}
+
+.btn-secondary:hover{
+    background:#d1d5db;
 }
 
 /* ================= MESSAGES ================= */
@@ -476,6 +484,7 @@ body{
 
 </head>
 
+
 <body>
 
 
@@ -523,7 +532,12 @@ body{
 <main class="container">
 
 
-    <div id="loadingBox" class="loading">
+    <!-- LOADING -->
+
+    <div
+        id="loadingBox"
+        class="loading"
+    >
 
         <div class="spinner"></div>
 
@@ -532,17 +546,23 @@ body{
     </div>
 
 
+    <!-- ERROR -->
+
     <div
         id="errorMessage"
         class="message error-message"
     ></div>
 
 
+    <!-- SUCCESS -->
+
     <div
         id="successMessage"
         class="message success-message"
     ></div>
 
+
+    <!-- CONTENT -->
 
     <div id="content">
 
@@ -702,7 +722,7 @@ body{
 
 
         <!-- =================================================
-             COURSE DETAILS
+             ADMISSION DETAILS
         ================================================= -->
 
         <div class="card">
@@ -1292,214 +1312,318 @@ body{
 
                     <tbody>
 
+
                         <tr>
-                            <td><strong>Semester 1</strong></td>
 
                             <td>
+                                <strong>Semester 1</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester1Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester1UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester1Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
-                            <td><strong>Semester 2</strong></td>
 
                             <td>
+                                <strong>Semester 2</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester2Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester2UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester2Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
-                            <td><strong>Semester 3</strong></td>
 
                             <td>
+                                <strong>Semester 3</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester3Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester3UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester3Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
-                            <td><strong>Semester 4</strong></td>
 
                             <td>
+                                <strong>Semester 4</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester4Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester4UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester4Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
-                            <td><strong>Semester 5</strong></td>
 
                             <td>
+                                <strong>Semester 5</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester5Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester5UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester5Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
 
 
                         <tr>
-                            <td><strong>Semester 6</strong></td>
 
                             <td>
+                                <strong>Semester 6</strong>
+                            </td>
+
+                            <td>
+
                                 <input
                                     type="number"
                                     id="semester6Amount"
-                                    class="fee-input semester-amount"
+                                    class="fee-input"
                                     min="0"
                                     step="0.01"
                                     placeholder="0"
                                 >
+
                             </td>
 
                             <td>
+
                                 <input
                                     type="text"
                                     id="semester6UPI"
                                     class="fee-input"
                                     placeholder="UPI Transaction ID"
                                 >
+
                             </td>
 
                             <td>
+
                                 <select
                                     id="semester6Status"
-                                    class="fee-select semester-status"
+                                    class="fee-select"
                                 >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid">
+                                        Paid
+                                    </option>
+
                                 </select>
+
                             </td>
+
                         </tr>
+
 
                     </tbody>
 
@@ -1508,7 +1632,10 @@ body{
             </div>
 
 
+            <!-- FEE SUMMARY -->
+
             <div class="fee-summary">
+
 
                 <div class="fee-summary-card">
 
@@ -1556,6 +1683,7 @@ body{
                     </div>
 
                 </div>
+
 
             </div>
 
@@ -1605,10 +1733,11 @@ body{
                 <button
                     type="button"
                     class="btn btn-secondary"
-                    onclick="window.location.href='applicant-list.html'"
+                    id="backBtn"
                 >
                     ← Back to Applicants
                 </button>
+
 
             </div>
 
@@ -1621,19 +1750,29 @@ body{
 
 
 <!-- =====================================================
-     FIREBASE
+     JAVASCRIPT
 ===================================================== -->
 
 <script type="module">
+
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
 import {
     getFirestore,
+    collection,
     doc,
     getDoc,
+    getDocs,
+    query,
+    where,
     updateDoc,
     deleteDoc,
     serverTimestamp
@@ -1668,14 +1807,17 @@ const firebaseConfig = {
 
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
+
 
 const db =
     getFirestore(app);
 
 
 /* =====================================================
-   APPLICATION ID
+   URL PARAMETERS
 ===================================================== */
 
 const urlParams =
@@ -1683,8 +1825,27 @@ const urlParams =
         window.location.search
     );
 
-const applicationId =
+
+/*
+ * Accept:
+ *
+ * applicant-view.html?id=FIRESTORE_DOCUMENT_ID
+ *
+ * OR
+ *
+ * applicant-view.html?id=APP-2026-000001
+ *
+ * OR
+ *
+ * applicant-view.html?applicationNo=APP-2026-000001
+ */
+
+const urlId =
     urlParams.get("id");
+
+
+const urlApplicationNo =
+    urlParams.get("applicationNo");
 
 
 /* =====================================================
@@ -1696,44 +1857,58 @@ const loadingBox =
         "loadingBox"
     );
 
+
 const content =
     document.getElementById(
         "content"
     );
+
 
 const errorMessage =
     document.getElementById(
         "errorMessage"
     );
 
+
 const successMessage =
     document.getElementById(
         "successMessage"
     );
+
 
 const applicationStatus =
     document.getElementById(
         "applicationStatus"
     );
 
+
 const statusText =
     document.getElementById(
         "statusText"
     );
+
 
 const verifyBtn =
     document.getElementById(
         "verifyBtn"
     );
 
+
 const saveFeeBtn =
     document.getElementById(
         "saveFeeBtn"
     );
 
+
 const deleteBtn =
     document.getElementById(
         "deleteBtn"
+    );
+
+
+const backBtn =
+    document.getElementById(
+        "backBtn"
     );
 
 
@@ -1744,8 +1919,16 @@ const deleteBtn =
 let currentApplication = null;
 
 
+/*
+ * This will ALWAYS contain the actual
+ * Firestore document ID after loading.
+ */
+
+let firestoreDocumentId = null;
+
+
 /* =====================================================
-   ERROR
+   MESSAGE FUNCTIONS
 ===================================================== */
 
 function showError(message){
@@ -1762,10 +1945,6 @@ function showError(message){
 }
 
 
-/* =====================================================
-   SUCCESS
-===================================================== */
-
 function showSuccess(message){
 
     successMessage.textContent =
@@ -1781,7 +1960,7 @@ function showSuccess(message){
 
 
 /* =====================================================
-   FORMAT VALUE
+   DISPLAY VALUE
 ===================================================== */
 
 function displayValue(value){
@@ -1802,7 +1981,7 @@ function displayValue(value){
 
 
 /* =====================================================
-   GET STATUS CLASS
+   STATUS CLASS
 ===================================================== */
 
 function getStatusClass(status){
@@ -1813,28 +1992,48 @@ function getStatusClass(status){
             .trim();
 
 
-    if(value.includes("reject")){
+    if(
+        value.includes("reject")
+    ){
+
         return "status-rejected";
+
     }
 
 
-    if(value.includes("confirm")){
+    if(
+        value.includes("confirm")
+    ){
+
         return "status-confirmed";
+
     }
 
 
-    if(value.includes("select")){
+    if(
+        value.includes("select")
+    ){
+
         return "status-selected";
+
     }
 
 
-    if(value.includes("verif")){
+    if(
+        value.includes("verif")
+    ){
+
         return "status-verified";
+
     }
 
 
-    if(value.includes("pending")){
+    if(
+        value.includes("pending")
+    ){
+
         return "status-pending";
+
     }
 
 
@@ -1850,7 +2049,9 @@ function getStatusClass(status){
 function updateStatusDisplay(){
 
     if(!currentApplication){
+
         return;
+
     }
 
 
@@ -1873,6 +2074,161 @@ function updateStatusDisplay(){
     statusText.textContent =
         status;
 
+
+    /*
+     * Disable Verify button when already verified.
+     */
+
+    const normalizedStatus =
+        String(status)
+            .toLowerCase()
+            .trim();
+
+
+    if(
+        normalizedStatus === "verified" ||
+        normalizedStatus.includes("selected") ||
+        normalizedStatus.includes("confirmed")
+    ){
+
+        verifyBtn.textContent =
+            "✓ Application Verified";
+
+        verifyBtn.disabled =
+            true;
+
+    }else{
+
+        verifyBtn.textContent =
+            "✓ Verify Application";
+
+        verifyBtn.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD BY FIRESTORE DOCUMENT ID
+===================================================== */
+
+async function loadByDocumentId(id){
+
+    console.log(
+        "Trying Firestore document ID:",
+        id
+    );
+
+
+    const applicationRef =
+        doc(
+            db,
+            "admissions",
+            id
+        );
+
+
+    const snapshot =
+        await getDoc(
+            applicationRef
+        );
+
+
+    if(
+        !snapshot.exists()
+    ){
+
+        return false;
+
+    }
+
+
+    firestoreDocumentId =
+        snapshot.id;
+
+
+    currentApplication = {
+
+        id:
+            snapshot.id,
+
+        ...snapshot.data()
+
+    };
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   LOAD BY APPLICATION NUMBER
+===================================================== */
+
+async function loadByApplicationNumber(
+    applicationNo
+){
+
+    console.log(
+        "Searching application number:",
+        applicationNo
+    );
+
+
+    const admissionsRef =
+        collection(
+            db,
+            "admissions"
+        );
+
+
+    const q =
+        query(
+            admissionsRef,
+            where(
+                "applicationNo",
+                "==",
+                applicationNo
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    if(
+        snapshot.empty
+    ){
+
+        return false;
+
+    }
+
+
+    const firstDoc =
+        snapshot.docs[0];
+
+
+    firestoreDocumentId =
+        firstDoc.id;
+
+
+    currentApplication = {
+
+        id:
+            firstDoc.id,
+
+        ...firstDoc.data()
+
+    };
+
+
+    return true;
+
 }
 
 
@@ -1882,58 +2238,132 @@ function updateStatusDisplay(){
 
 async function loadApplication(){
 
-    if(!applicationId){
-
-        loadingBox.style.display =
-            "none";
-
-        showError(
-            "Application ID is missing. Please return to the applicant list."
-        );
-
-        return;
-
-    }
-
-
     try{
 
-        const applicationRef =
-            doc(
-                db,
-                "admissions",
-                applicationId
-            );
+        loadingBox.style.display =
+            "block";
+
+        content.style.display =
+            "none";
 
 
-        const snapshot =
-            await getDoc(
-                applicationRef
-            );
+        errorMessage.style.display =
+            "none";
+
+        successMessage.style.display =
+            "none";
 
 
-        if(!snapshot.exists()){
+        /*
+         * No URL information
+         */
+
+        if(
+            !urlId &&
+            !urlApplicationNo
+        ){
 
             loadingBox.style.display =
                 "none";
 
+
             showError(
-                "Application not found."
+                "Application ID is missing. Please open the application from the Applicant List."
             );
+
 
             return;
 
         }
 
 
-        currentApplication = {
+        let loaded =
+            false;
 
-            id:
-                snapshot.id,
 
-            ...snapshot.data()
+        /*
+         * First try ?id=
+         */
 
-        };
+        if(urlId){
+
+            /*
+             * First assume it is
+             * Firestore document ID.
+             */
+
+            loaded =
+                await loadByDocumentId(
+                    urlId
+                );
+
+
+            /*
+             * If not found, assume the
+             * supplied ID is actually
+             * applicationNo.
+             */
+
+            if(!loaded){
+
+                loaded =
+                    await loadByApplicationNumber(
+                        urlId
+                    );
+
+            }
+
+        }
+
+
+        /*
+         * If ?id did not work,
+         * try ?applicationNo=
+         */
+
+        if(
+            !loaded &&
+            urlApplicationNo
+        ){
+
+            loaded =
+                await loadByApplicationNumber(
+                    urlApplicationNo
+                );
+
+        }
+
+
+        /*
+         * Nothing found
+         */
+
+        if(!loaded){
+
+            loadingBox.style.display =
+                "none";
+
+
+            showError(
+                "Application not found. Please check the application ID or application number."
+            );
+
+
+            return;
+
+        }
+
+
+        console.log(
+            "FIRESTORE DOCUMENT ID:",
+            firestoreDocumentId
+        );
+
+
+        console.log(
+            "APPLICATION DATA:",
+            currentApplication
+        );
 
 
         renderApplication();
@@ -1941,6 +2371,7 @@ async function loadApplication(){
 
         loadingBox.style.display =
             "none";
+
 
         content.style.display =
             "block";
@@ -1956,6 +2387,7 @@ async function loadApplication(){
 
         loadingBox.style.display =
             "none";
+
 
         showError(
             "Unable to load application. " +
@@ -2209,50 +2641,10 @@ function renderApplication(){
         );
 
 
-    /* ================= STATUS ================= */
-
     updateStatusDisplay();
 
 
-    /* ================= FEES ================= */
-
     loadFeeDetails();
-
-
-    /* ================= VERIFY BUTTON ================= */
-
-    const status =
-        String(
-            data.applicationStatus ||
-            data.status ||
-            data.admissionStatus ||
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    if(
-        status === "verified" ||
-        status.includes("selected") ||
-        status.includes("confirmed")
-    ){
-
-        verifyBtn.textContent =
-            "✓ Application Verified";
-
-        verifyBtn.disabled =
-            true;
-
-    }else{
-
-        verifyBtn.textContent =
-            "✓ Verify Application";
-
-        verifyBtn.disabled =
-            false;
-
-    }
 
 }
 
@@ -2263,10 +2655,15 @@ function renderApplication(){
 
 async function verifyApplication(){
 
-    if(!applicationId){
+    /*
+     * This MUST use the actual Firestore
+     * document ID found while loading.
+     */
+
+    if(!firestoreDocumentId){
 
         showError(
-            "Application ID is missing."
+            "Firestore document ID is not available."
         );
 
         return;
@@ -2287,17 +2684,13 @@ async function verifyApplication(){
 
     const applicationNo =
         currentApplication.applicationNo ||
-        applicationId;
+        firestoreDocumentId;
 
 
     const applicantName =
         currentApplication.applicantName ||
         "";
 
-
-    /*
-     * If already verified, do nothing.
-     */
 
     const currentStatus =
         String(
@@ -2308,6 +2701,10 @@ async function verifyApplication(){
         .toLowerCase();
 
 
+    /*
+     * Already verified
+     */
+
     if(
         currentStatus === "verified"
     ){
@@ -2316,19 +2713,34 @@ async function verifyApplication(){
             "This application is already verified."
         );
 
+
+        updateStatusDisplay();
+
+
         return;
 
     }
 
 
+    /*
+     * Confirmation
+     */
+
     const confirmed =
         confirm(
+
             "Verify this application?\n\n" +
+
             "Application No: " +
             applicationNo +
+
             "\nApplicant: " +
             applicantName +
-            "\n\nStatus will be changed to VERIFIED."
+
+            "\n\n" +
+
+            "Application status will become VERIFIED."
+
         );
 
 
@@ -2344,14 +2756,16 @@ async function verifyApplication(){
         verifyBtn.disabled =
             true;
 
+
         verifyBtn.textContent =
             "Verifying...";
 
 
         /*
-         * UPDATE FIRESTORE
+         * IMPORTANT:
          *
-         * This is the important part.
+         * Update the EXACT Firestore
+         * document that was loaded.
          */
 
         await updateDoc(
@@ -2359,7 +2773,7 @@ async function verifyApplication(){
             doc(
                 db,
                 "admissions",
-                applicationId
+                firestoreDocumentId
             ),
 
             {
@@ -2382,18 +2796,19 @@ async function verifyApplication(){
 
 
         /*
-         * Update local data immediately.
+         * Update local data
          */
 
         currentApplication.applicationStatus =
             "Verified";
+
 
         currentApplication.documentStatus =
             "Verified";
 
 
         /*
-         * Update screen immediately.
+         * Update screen immediately
          */
 
         updateStatusDisplay();
@@ -2408,9 +2823,17 @@ async function verifyApplication(){
 
 
         showSuccess(
+
             "Application " +
             applicationNo +
             " has been verified successfully."
+
+        );
+
+
+        console.log(
+            "APPLICATION VERIFIED:",
+            firestoreDocumentId
         );
 
 
@@ -2424,6 +2847,7 @@ async function verifyApplication(){
 
         verifyBtn.disabled =
             false;
+
 
         verifyBtn.textContent =
             "✓ Verify Application";
@@ -2532,9 +2956,14 @@ function calculateFees(){
     let totalFee =
         0;
 
+
     let totalPaid =
         0;
 
+
+    /*
+     * Application fee
+     */
 
     const applicationAmount =
         Number(
@@ -2559,6 +2988,10 @@ function calculateFees(){
 
     }
 
+
+    /*
+     * Semester fees
+     */
 
     for(
         let i = 1;
@@ -2588,7 +3021,9 @@ function calculateFees(){
             ).value;
 
 
-        if(status === "Paid"){
+        if(
+            status === "Paid"
+        ){
 
             totalPaid +=
                 amount;
@@ -2633,18 +3068,28 @@ function calculateFees(){
 
 
 /* =====================================================
-   FORMAT CURRENCY
+   CURRENCY
 ===================================================== */
 
 function formatCurrency(amount){
 
     return new Intl.NumberFormat(
+
         "en-IN",
+
         {
-            style:"currency",
-            currency:"INR",
-            minimumFractionDigits:2
+
+            style:
+                "currency",
+
+            currency:
+                "INR",
+
+            minimumFractionDigits:
+                2
+
         }
+
     ).format(
         Number(amount) || 0
     );
@@ -2658,10 +3103,10 @@ function formatCurrency(amount){
 
 async function saveFeeDetails(){
 
-    if(!applicationId){
+    if(!firestoreDocumentId){
 
         showError(
-            "Application ID is missing."
+            "Firestore document ID is not available."
         );
 
         return;
@@ -2673,6 +3118,7 @@ async function saveFeeDetails(){
 
         saveFeeBtn.disabled =
             true;
+
 
         saveFeeBtn.textContent =
             "Saving...";
@@ -2687,10 +3133,12 @@ async function saveFeeDetails(){
                     ).value
                 ) || 0,
 
+
             upiTransactionId:
                 document.getElementById(
                     "applicationFeeUPI"
                 ).value.trim(),
+
 
             status:
                 document.getElementById(
@@ -2722,12 +3170,14 @@ async function saveFeeDetails(){
                         ).value
                     ) || 0,
 
+
                 upiTransactionId:
                     document.getElementById(
                         "semester" +
                         i +
                         "UPI"
                     ).value.trim(),
+
 
                 status:
                     document.getElementById(
@@ -2746,7 +3196,7 @@ async function saveFeeDetails(){
             doc(
                 db,
                 "admissions",
-                applicationId
+                firestoreDocumentId
             ),
 
             {
@@ -2765,8 +3215,13 @@ async function saveFeeDetails(){
         );
 
 
+        /*
+         * Update local object
+         */
+
         currentApplication.applicationFee =
             applicationFee;
+
 
         currentApplication.semesterFees =
             semesterFees;
@@ -2798,6 +3253,7 @@ async function saveFeeDetails(){
         saveFeeBtn.disabled =
             false;
 
+
         saveFeeBtn.textContent =
             "💾 Save Fee Details";
 
@@ -2812,10 +3268,10 @@ async function saveFeeDetails(){
 
 async function deleteApplication(){
 
-    if(!applicationId){
+    if(!firestoreDocumentId){
 
         showError(
-            "Application ID is missing."
+            "Firestore document ID is not available."
         );
 
         return;
@@ -2825,7 +3281,7 @@ async function deleteApplication(){
 
     const applicationNo =
         currentApplication?.applicationNo ||
-        applicationId;
+        firestoreDocumentId;
 
 
     const applicantName =
@@ -2833,14 +3289,23 @@ async function deleteApplication(){
         "";
 
 
+    /*
+     * First confirmation
+     */
+
     const firstConfirm =
         confirm(
+
             "Are you sure you want to delete this application?\n\n" +
+
             "Application No: " +
             applicationNo +
+
             "\nApplicant: " +
             applicantName +
+
             "\n\nThis action cannot be undone."
+
         );
 
 
@@ -2851,12 +3316,19 @@ async function deleteApplication(){
     }
 
 
+    /*
+     * Second confirmation
+     */
+
     const secondConfirm =
         confirm(
+
             "FINAL CONFIRMATION\n\n" +
+
             "Delete application " +
             applicationNo +
             " permanently?"
+
         );
 
 
@@ -2872,11 +3344,14 @@ async function deleteApplication(){
         deleteBtn.disabled =
             true;
 
+
         verifyBtn.disabled =
             true;
 
+
         saveFeeBtn.disabled =
             true;
+
 
         deleteBtn.textContent =
             "Deleting...";
@@ -2887,7 +3362,7 @@ async function deleteApplication(){
             doc(
                 db,
                 "admissions",
-                applicationId
+                firestoreDocumentId
             )
 
         );
@@ -2899,13 +3374,16 @@ async function deleteApplication(){
 
 
         setTimeout(
+
             () => {
 
                 window.location.href =
                     "applicant-list.html";
 
             },
+
             1000
+
         );
 
 
@@ -2920,8 +3398,12 @@ async function deleteApplication(){
         deleteBtn.disabled =
             false;
 
+
         saveFeeBtn.disabled =
             false;
+
+
+        updateStatusDisplay();
 
 
         showError(
@@ -2935,7 +3417,43 @@ async function deleteApplication(){
 
 
 /* =====================================================
-   EVENTS
+   FEE EVENTS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".fee-input"
+    )
+    .forEach(
+        input => {
+
+            input.addEventListener(
+                "input",
+                calculateFees
+            );
+
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        ".fee-select"
+    )
+    .forEach(
+        select => {
+
+            select.addEventListener(
+                "change",
+                calculateFees
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   BUTTON EVENTS
 ===================================================== */
 
 verifyBtn.addEventListener(
@@ -2956,46 +3474,54 @@ deleteBtn.addEventListener(
 );
 
 
-/* =====================================================
-   FEE CALCULATION EVENTS
-===================================================== */
+backBtn.addEventListener(
+    "click",
+    () => {
 
-document
-    .querySelectorAll(
-        ".fee-input"
-    )
-    .forEach(input => {
+        window.location.href =
+            "applicant-list.html";
 
-        input.addEventListener(
-            "input",
-            calculateFees
-        );
-
-    });
-
-
-document
-    .querySelectorAll(
-        ".fee-select"
-    )
-    .forEach(select => {
-
-        select.addEventListener(
-            "change",
-            calculateFees
-        );
-
-    });
+    }
+);
 
 
 /* =====================================================
-   START
+   START APPLICATION
 ===================================================== */
+
+console.log(
+    "========================================"
+);
+
+
+console.log(
+    "MAASC APPLICANT VIEW INITIALIZED"
+);
+
+
+console.log(
+    "URL ID:",
+    urlId
+);
+
+
+console.log(
+    "URL APPLICATION NO:",
+    urlApplicationNo
+);
+
+
+console.log(
+    "========================================"
+);
+
 
 loadApplication();
 
 </script>
 
+
 </body>
+
 </html>
-```
+
